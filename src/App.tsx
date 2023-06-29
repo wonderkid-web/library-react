@@ -1,13 +1,12 @@
-import { useState } from 'react'
+import SectionOne from "./Components/SectionOne"
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
-      <h1>Library React</h1>
+      <SectionOne />
     </>
   )
 }
 
-export default App
+export default App;
