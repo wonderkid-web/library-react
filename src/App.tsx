@@ -6,8 +6,7 @@ function App() {
 
   return (
     <>
-    <Navbar />
-     <h1 className="bg-red-700">Wahyu already Changed this on Dev branch!</h1>
+      <Navbar />
     </>
   )
 }
