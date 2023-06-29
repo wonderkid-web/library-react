@@ -1,11 +1,13 @@
 import { useState } from 'react'
+import Navbar from "./Components/Navbar"
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
-     <h1>Wahyu already Changed this on Dev branch!</h1>
+    <Navbar />
+     <h1 className="bg-red-700">Wahyu already Changed this on Dev branch!</h1>
     </>
   )
 }
