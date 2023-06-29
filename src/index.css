@@ -1,4 +1,19 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root{
+    --poppins: 'Poppins', sans-serif;
+}
+
+
+body{
+    font-family: var(--poppins);
+}
+
+nav{
+    height: 8vh;
+    display: grid;
+    grid-template-columns: 50vw 50vw;
+}
