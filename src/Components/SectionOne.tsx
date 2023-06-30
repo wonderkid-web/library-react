@@ -1,13 +1,11 @@
 import { FaSearch } from "react-icons/fa";
-import Navbar from "./Navbar";
 
 export default function SectionOne() {
   return (
     <>
-      <Navbar />
       {/* Left */}
-      <section className="flex justify-between">
-        <div className="flex flex-col p-5 relative top-40">
+      <section className="flex mt-32 justify-between h-screen ml-16">
+        <div className="flex flex-col ">
           <div className="flex gap-5">
             <span className="font-poppins lg:text-[40px] font-bold">Perpustakaan</span>
             <img
@@ -28,7 +26,7 @@ export default function SectionOne() {
         </div>
 
         {/* Right */}
-        <img src="book.svg" alt="Buku ecek nya" className="w-[450px] relative top-[100px] left-[-100px]" />
+        <img src="book.svg" alt="Buku ecek nya" className="w-[450px] relative bottom-[30vh] right-[5vw]" />
       </section>
     </>
   );

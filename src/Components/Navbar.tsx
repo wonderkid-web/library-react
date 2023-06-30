@@ -1,6 +1,6 @@
 const Navbar = () => {
   return (
-    <nav className="grid-cols-2 items-center border-b-2 fixed w-full bg-[#fdf9f3] z-[999999]">
+    <nav className="grid-cols-2 items-center border-b-2 w-full bg-[#fdf9f3]">
       <div className="left">
         <ul className="flex gap-4 ml-12 cursor-pointer">
           <li className="font-bold">Library Panda</li>
