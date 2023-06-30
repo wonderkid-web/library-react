@@ -3,7 +3,7 @@ const Navbar = () => {
     <nav className="grid-cols-2 items-center border-b-2 fixed w-full bg-[#fdf9f3] z-[999999]">
       <div className="left">
         <ul className="flex gap-4 ml-12 cursor-pointer">
-          <li>Library Panda</li>
+          <li className="font-bold">Library Panda</li>
           <li>|</li>
           <li>Buku</li>
         </ul>

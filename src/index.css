@@ -10,7 +10,7 @@
 
 body{
     font-family: var(--poppins);
-    overflow-x: hidden;
+    background-color: #fdf9f3;
 }
 
 nav{
