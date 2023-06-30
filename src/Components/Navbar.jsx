@@ -2,7 +2,7 @@ import React from 'react'
 
 const Navbar = () => {
   return (
-    <nav className="grid-cols-2 items-center border-b-2">
+    <nav className="grid-cols-2 items-center border-b-2 fixed w-full">
       <div className="left">  
           <ul className="flex gap-4 ml-12 cursor-pointer">
             <li>Library</li>
