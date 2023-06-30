@@ -9,14 +9,14 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="right items-center justify-self-end mr-8">
-        <ul className="flex gap-4 ml-12 cursor-pointer">
+        <ul className="flex gap-4 ml-12 cursor-pointer items-center justify-center">
           <li>Pencarian</li>
           <li>Transaksi</li>
           <li>
             <img className="mt-1" src="public/bell.png" width={15} />
           </li>
           <li>
-            <img className="rounded-full" src="https://images7.alphacoders.com/500/500493.jpg" width={40} />
+            <img className="rounded-full" src="https://rfkinrikhwan.vercel.app/static/media/rifki.23a8057d258289c1d3d5.jpeg" width={40} />
           </li>
         </ul>
       </div>
