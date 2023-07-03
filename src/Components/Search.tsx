@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { BookType } from "./RootLayout"
 import { Link } from "react-router-dom"
 
 const Search = () => {
@@ -14,7 +15,7 @@ const Search = () => {
         setBooks(data.books)
     }
 
-    const getBookByQuery = async (q) => {
+    const getBookByQuery = async (q: string) => {
         let link = `https://www.dbooks.org/api/search/${q}`
         const raw = await fetch(link)
         const newBook = await raw.json()
@@ -69,7 +70,7 @@ const Search = () => {
             <div className="carousel carousel-center w-full grid grid-cols-3 my-[50px] p-4 sp-4 space-x-4 bg-yellow-200 rounded-box">
                 <h1 className="text-center text-xl col-span-3 my-4">Mungkin kamu tertarik dengan ini?</h1>
                 <div className="bottom flex gap-4">
-                    {books && books.map(book => {
+                    {books && books.map((book: BookType) => {
                         return (
                             <div key={book.id} className="w-[250px] carousel-item">
                                 <div className="card card-compact bg-base-100 shadow-xl">
@@ -77,9 +78,9 @@ const Search = () => {
                                     <div className="card-body">
                                         <h2 className="card-title">{book.title}</h2>
                                         <p>Author: {book.authors}</p>
-                                        <p>ID: {book.id}</p>
+                                        <p>ID: {book.id.replace("X", "")}</p>
                                         <div className="card-actions justify-end">
-                                            <Link to={`/profile/${book.id}`}>
+                                            <Link to={`/profile/${book.id.replace("X", "")}`}>
                                                 <button className="btn font-bold btn-primary">
                                                     Borrow
                                                 </button>

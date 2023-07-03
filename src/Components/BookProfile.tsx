@@ -1,5 +1,6 @@
 import { useLoaderData } from "react-router-dom";
 import { BookType } from "./RootLayout";
+import { QRCodeSVG } from 'qrcode.react';
 
 export const getBookById = async ({ params }: any) => {
   const raw = await fetch(`https://www.dbooks.org/api/book/${params.id}`)
@@ -13,44 +14,31 @@ const BookProfile = () => {
 
   return (
     <div className="hero min-h-screen">
-      <div className="hero-content flex-col lg:flex-row gap-[100px] border p-16 bg-yellow-200 rounded-xl">
+      <div className="hero-content flex-col lg:flex-row gap-[100px] border p-16 rounded-xl">
         <img
           src={book.image}
-          className="w-[600px] h-[600px] rounded-lg shadow-2xl"
+          className="rounded-lg shadow-2xl"
         />
-        <div className="flex flex-col">
-          <h1 className="text-4xl font-bold text-black">{book.title}</h1>
-          <span className="mb-[80px]">by {book.authors}</span>
-          <table>
-            <tr>
-              <th>Publisher</th>
-              <th>:</th>
-              <td>{book.publisher}</td>
-            </tr>
-            <tr>
-              <td>ID</td>
-              <td>:</td>
-              <td>{book.id}</td>
-            </tr>
-            <tr>
-              <td>Halaman</td>
-              <td>:</td>
-              <td>{book.pages}</td>
-            </tr>
-            <tr>
-              <td>Description</td>
-              <td>:</td>
-              <td>{book.description}</td>
-            </tr>
-          </table>
-          <div className="flex gap-5 mt-10">
-            <button className="btn btn-primary w-[100px]">
+        <div className="w-1/2 mx-4 flex flex-col">
+          <h1 className="text-5xl font-bold">{book.title}</h1>
+          <span className="indicator-item mt-4 indicator-bottom indicator-start badge badge-info text-white">9463666656</span>
+          <ul className="py-6 list-disc">
+            <li>Authors: {book.authors}</li>
+            <li>Publisher: {book.publisher}</li>
+            <li>ID:{book.id}</li>
+            <li>Halaman: {book.pages}</li>
+            <li>Description: {book.description}</li>
+          </ul>
+          <div className="join">
+            <button className="btn join-item btn-warning font-bold">
               <a href={book.download}>Download</a>
             </button>
-            <button className="btn btn-primary w-[100px]">
-              <a href={book.download}>Borrow</a>
+            <div className="divider"></div>
+            <button className="btn join-item btn-warning font-bold">
+              <a href={`profile/${book.id}`}>Borrow</a>
             </button>
           </div>
+          <QRCodeSVG value={`http://localhost:5173/profile/${book.id}`} size={150} />
         </div>
       </div>
     </div>
