@@ -28,8 +28,10 @@ const Search = () => {
 
     return (
         <div className="p-4 flex flex-col justify-start">
-            <input type="text" placeholder="name of your book" onChange={(e) => setQuery(e.target.value)} className="input input-bordered w-full max-w-xs" />
-            <button className="font-bold p-2 m-2 btn" onClick={() => getBookByQuery(query)}>Search this book</button>
+            <div className="search-query flex my-2">
+                <input type="text" placeholder="name of your book" onChange={(e) => setQuery(e.target.value)} className="input input-bordered w-full max-w-xs" />
+                <button className="font-bold p-2 mx-2 btn w-fit" onClick={() => getBookByQuery(query)}>Search this book</button>
+            </div>
             {
                 total && <input className="input input-bordered w-full max-w-xs" type="text" onChange={(e) => setSearch(e.target.value)} placeholder="found exact book you looking for!" />
             }
@@ -53,7 +55,7 @@ const Search = () => {
                                 return search.toLocaleLowerCase() === '' ? book : book.title.toLowerCase().includes(search.toLocaleLowerCase())
                             }).map(book => {
                                 return (
-                                    <tr>
+                                    <tr key={book.id}>
                                         <th>{book.id}</th>
                                         <td>{book.title}</td>
                                     </tr>
@@ -63,7 +65,29 @@ const Search = () => {
                     </tbody>
                 </table>
             </div>
-        </div >
+            <div className="carousel carousel-center w-full grid grid-cols-3 my-[50px] p-4 sp-4 space-x-4 bg-yellow-200 rounded-box">
+                <h1 className="text-center text-xl col-span-3 my-4">Mungkin kamu tertarik dengan ini?</h1>
+                <div className="bottom flex gap-4">
+                    {books && books.map(book => {
+                        return (
+                            <div key={book.id} className="w-[250px] carousel-item">
+                                <div className="card card-compact bg-base-100 shadow-xl">
+                                    <figure><img className="w-full" src={book.image} alt="Shoes" /></figure>
+                                    <div className="card-body">
+                                        <h2 className="card-title">{book.title}</h2>
+                                        <p>Author: {book.authors}</p>
+                                        <p>ID: {book.id}</p>
+                                        <div className="card-actions justify-end">
+                                            <button className="btn font-bold btn-primary">Borrow</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        )
+                    })}
+                </div>
+            </div>
+        </div>
     )
 }
 
