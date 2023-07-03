@@ -5,7 +5,7 @@ export default function SectionOne() {
     <>
       {/* Left */}
       <section className="flex gap-32 px-[50px] mx-auto h-screen border w-full md:px-[60px] sm:flex-wrap sm:justify-center sm:items-center">
-        <div className="flex flex-col mx-auto my-auto  border">
+        <div className="flex flex-col mx-auto my-auto">
           <div className="flex gap-5">
             <span className="font-poppins text-[50px] font-bold">Perpustakaan</span>
             <img

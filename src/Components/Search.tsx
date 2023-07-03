@@ -79,9 +79,11 @@ const Search = () => {
                                         <p>Author: {book.authors}</p>
                                         <p>ID: {book.id}</p>
                                         <div className="card-actions justify-end">
-                                            <button className="btn font-bold btn-primary">
-                                                <Link to={`/profile/${book.id}`}>Borrow</Link>
-                                            </button>
+                                            <Link to={`/profile/${book.id}`}>
+                                                <button className="btn font-bold btn-primary">
+                                                    Borrow
+                                                </button>
+                                            </Link>
                                         </div>
                                     </div>
                                 </div>
