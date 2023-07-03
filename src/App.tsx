@@ -1,6 +1,5 @@
-import { BrowserRouter, Route, RouterProvider, Routes, createBrowserRouter, createRoutesFromElements } from "react-router-dom";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import BookProfile, { getBookById } from "./Components/BookProfile";
-import Navbar from "./Components/Navbar";
 import Search from "./Components/Search";
 import SectionOne from "./Components/SectionOne"
 import RootLayout from "./Components/RootLayout";

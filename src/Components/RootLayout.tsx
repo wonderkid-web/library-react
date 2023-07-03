@@ -9,6 +9,7 @@ export interface BookType{
   publisher: string;
   pages: string;
   title: string;
+  download: string;
 }
 
 const RootLayout = () => {
