@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import image from "/Bulat.svg"
 
 const Navbar = () => {
   return (
@@ -9,7 +10,7 @@ const Navbar = () => {
             Library Panda
           </span>
           <img
-            src="Bulat.svg"
+            src={image}
             alt="Bulat Tapi Bukan Tekad"
             className="w-[50px] ml-3"
           />

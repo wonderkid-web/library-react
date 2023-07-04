@@ -42,7 +42,7 @@ const Search = () => {
                 <button className="font-bold flex justify-center items-center bg-primary text-white p-5 rounded-lg cursor-pointer shadow-md" onClick={() => getBookByQuery(query)}><FaSearch /></button>
             </div>
             <div className="p-4 flex flex-col justify-start mt-40">
-                <div className="p-12 flex gap-10">
+                <div className="p-12 flex gap-10 mb-[-50px]">
                     {
                         total && <input className="input bg-white border border-slate-500 w-full max-w-xs" type="text" onChange={(e) => setSearch(e.target.value)} placeholder="found exact book you looking for!" />
                     }
