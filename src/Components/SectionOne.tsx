@@ -1,4 +1,5 @@
 import { FaSearch } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 export default function SectionOne() {
   return (
@@ -33,9 +34,11 @@ export default function SectionOne() {
           <span className="w-[655px] text-[20px] relative bottom-[65px] border-b border-black ml-[40px] p-[11px] py-5">
             Smk Putra Anda adalah sekolah Pusat Unggulan Se-Kota Binjai.
           </span>
-          <button className="border border-[#0177FD] bg-[#0177FD] w-max py-4 px-10 rounded-full flex items-center justify-center gap-2 text-white font-bold relative bottom-10 ml-14 shadow-lg shadow-blue-500/50">
-            <FaSearch /> Search Book
-          </button>
+          <Link to={`/search`}>
+            <button className="border border-[#0177FD] bg-[#0177FD] w-max py-4 px-10 rounded-full flex items-center justify-center gap-2 text-white font-bold relative bottom-10 ml-14 shadow-lg shadow-blue-500/50">
+              <FaSearch /> Search Book
+            </button>
+          </Link>
         </div>
 
         {/* Right */}

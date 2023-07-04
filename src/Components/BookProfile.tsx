@@ -71,7 +71,7 @@ const BookProfile = () => {
           </table>
         </div>
         <div className="hidden p-5 lg:block mt-[90px]">
-          <img src={book.image} alt="Book" className="rounded-xl shadow-xl w-[400px]" />
+          <img src={book.image} alt="Book" className="rounded-xl shadow-xl" />
         </div>
       </div>
     </section>
