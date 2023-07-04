@@ -17,17 +17,16 @@ function App() {
         {
           path: '/',
           errorElement: <Error />,
-          element: (
-            <>
-              <SectionOne />
-              <Search />
-            </>
-          )
+          element: <SectionOne />
         },
         {
           path: '/profile/:id',
           element: <BookProfile />,
           loader: getBookById
+        },
+        {
+          path: '/search',
+          element: <Search />,
         }
       ]
     }

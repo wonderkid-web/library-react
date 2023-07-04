@@ -39,7 +39,7 @@ export default function SectionOne() {
         </div>
 
         {/* Right */}
-        <img src="book.svg" alt="Buku ecek nya" className="w-[550px] relative bottom-[3vw] " />
+        {/* <img src="book.svg" alt="Buku ecek nya" className="w-[550px] relative bottom-[3vw] " /> */}
       </section>
     </>
   );

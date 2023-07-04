@@ -1,25 +1,26 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root{
-    --poppins: 'Poppins', sans-serif;
+:root {
+  --poppins: "Poppins", sans-serif;
 }
 
-
-body{
-    font-family: var(--poppins);
-    background-color: #fdf9f3;
-    display: flex;
-    flex-direction: column;
-    color: black;
+body {
+  font-family: var(--poppins);
+  background-color: #fdf9f3;
+  display: flex;
+  flex-direction: column;
+  color: black;
 }
 
-nav{
-    height: 8vh;
-    display: grid;
-    grid-template-columns: 50vw 50vw;
+nav {
+  height: 8vh;
+  display: grid;
+  grid-template-columns: 50vw 50vw;
 }
 
-
+body::-webkit-scrollbar {
+  width: 0;
+}

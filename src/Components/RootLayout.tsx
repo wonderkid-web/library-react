@@ -10,6 +10,8 @@ export interface BookType{
   pages: string;
   title: string;
   download: string;
+  disabled: string;
+  book:any;
 }
 
 const RootLayout = () => {
