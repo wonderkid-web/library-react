@@ -1,7 +1,7 @@
 import { useLoaderData } from "react-router-dom";
 import { BookType } from "./RootLayout";
 import { QRCodeSVG } from 'qrcode.react';
-import Background from "/public/sssurf.svg"
+// import Background from "/public/sssurf.svg"
 
 export const getBookById = async ({ params }: any) => {
   const raw = await fetch(`https://www.dbooks.org/api/book/${params.id}`)
@@ -73,7 +73,7 @@ const BookProfile = () => {
           </table>
         </div>
         <div className="hidden p-12 lg:block mt-[125px]">
-          <img src={book.image} alt="Book" className="rounded-xl shadow-xl" />
+          <img src={book.image} alt="Book" className="rounded-xl shadow-xl w-[350px]" />
         </div>
       </div>
     </section>

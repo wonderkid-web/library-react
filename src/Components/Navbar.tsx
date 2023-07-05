@@ -18,7 +18,7 @@ const Navbar = () => {
       </div>
       <div className="flex-none gap-2">
         <div className="right items-center justify-self-end mr-8 cursor-pointer">
-          <ul className="flex gap-4 ml-12 ">
+          <ul className="flex gap-4 ml-12 justify-center items-center">
             <li>
               <NavLink to={`/`}
                 className={({ isActive, isPending }) =>
@@ -52,7 +52,7 @@ const Navbar = () => {
               >profile</NavLink>
             </li>
             <li>
-              <img className="rounded-full" src="https://images7.alphacoders.com/500/500493.jpg" width={40} />
+              <img className="rounded-full" src="https://i.pinimg.com/736x/08/28/87/082887d2f5c61e565de94dcab25f5293.jpg" width={40} />
             </li>
           </ul>
         </div>
