@@ -5,6 +5,7 @@ import SectionOne from "./Components/SectionOne"
 import RootLayout from "./Components/RootLayout";
 import Error from "./Components/Error";
 import Borrower, {getBorrower} from "./Components/Borrower";
+import User, { getBorrowedBook } from "./Components/User";
 
 
 
@@ -21,9 +22,14 @@ function App() {
           element: <SectionOne />
         },
         {
-          path: '/profile/:id',
+          path: '/bookProfile/:id',
           element: <BookProfile />,
           loader: getBookById
+        },
+        {
+          path: '/user/:name',
+          element: <User />,
+          loader: getBorrowedBook
         },
         {
           path: '/search',
