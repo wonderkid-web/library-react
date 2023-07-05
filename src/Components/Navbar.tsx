@@ -41,7 +41,7 @@ const Navbar = () => {
               >Search</NavLink>
             </li>
             <li>
-              <NavLink to={`/profile/:id`}
+              <NavLink to={`/bookProfile/:id`}
                 className={({ isActive, isPending }) =>
                   isActive
                     ? "bg-warning rounded-full p-2 text-white"

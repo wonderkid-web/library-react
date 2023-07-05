@@ -76,11 +76,11 @@ const BookProfile = () => {
                     <button className="btn join-item btn-warning font-bold">
                       <a href={book.download}>Download</a>
                     </button>
-                    <button className="btn join-item btn-warning font-bold" onClick={()=>borrowingBook(book.id, "wonder")}>
+                    <button className="btn join-item btn-warning font-bold" onClick={()=>borrowingBook(book.id, "kiki")}>
                       Borrow
                     </button>
                   </div>
-                  <QRCodeSVG className="shadow-md" value={`http://localhost:5173/profile/${book.id}`} size={150} />
+                  <QRCodeSVG className="shadow-md" value={`http://localhost:5173/bookProfile/${book.id}`} size={150} />
                 </td>
               </tr>
             </tbody>

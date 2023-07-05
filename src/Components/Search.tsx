@@ -86,7 +86,7 @@ const Search = () => {
                                                         </td>
                                                         <td>{book.title}</td>
                                                         <th>
-                                                            <Link to={`/profile/${book.id.replace("X", "")}`}>
+                                                            <Link to={`/bookProfile/${book.id.replace("X", "")}`}>
                                                                 <button className="btn font-bold btn-primary">details</button>
                                                             </Link>
                                                         </th>
