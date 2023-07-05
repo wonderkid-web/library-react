@@ -30,7 +30,7 @@ function App() {
           element: <Search />,
         },
         {
-          path: 'borrower',
+          path: '/borrower',
           element: <Borrower />,
           loader: getBorrower
         }

@@ -12,9 +12,11 @@ export interface BookType{
   download: string;
   disabled: string;
   book:any;
+  borrow: string;
 }
 
 export interface BorrowerType{
+  map: any;
   id: number;
   idBook: number;
   borrower: string;

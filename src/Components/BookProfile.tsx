@@ -1,6 +1,7 @@
 import { useLoaderData } from "react-router-dom";
 import { BookType } from "./RootLayout";
 import { QRCodeSVG } from 'qrcode.react';
+import { useState } from "react";
 
 export const getBookById = async ({ params }: any) => {
   const raw = await fetch(`https://www.dbooks.org/api/book/${params.id}`)
@@ -10,8 +11,9 @@ export const getBookById = async ({ params }: any) => {
 
 
 const BookProfile = () => {
+  const [borrow, setBorrower] = useState()
 
-  const borrowingBook = async (idBook:string, borrower:string) => {
+  const borrowingBook = async (idBook: string, borrower: string) => {
     await fetch('http://localhost:3000/borrowing', {
       method: 'POST',
       headers: {
@@ -21,8 +23,12 @@ const BookProfile = () => {
         idBook,
         borrower
       })
+    }).then((res) => {
+      console.log(res)
+      console.log('data tertambah')
+    }).catch((err) => {
+      console.log(err)
     });
-    console.log('data tertambah')
   }
 
   const book = useLoaderData() as BookType
@@ -73,13 +79,34 @@ const BookProfile = () => {
                 <td></td>
                 <td className="float-right lg:flex gap-36">
                   <div className="join">
-                    <button className="btn join-item btn-warning font-bold">
+                    <button className="btn join-item btn-primary border-r border-white font-bold">
                       <a href={book.download}>Download</a>
                     </button>
-                    <button className="btn join-item btn-warning font-bold" onClick={()=>borrowingBook(book.id, "wonder")}>
-                      Borrow
-                    </button>
+                    <button className="btn join-item btn-primary border-l border-white font-bold" onClick={() => borrowModal.showModal()}>Borrow</button>
                   </div>
+                  <dialog id="borrowModal" className="modal">
+                    <form method="dialog" className="modal-box bg-white">
+                      <div className="card card-side border">
+                        <figure><img src={book.image} alt="Movie" className="" /></figure>
+                        <div className="card-body">
+                          <h2 className="card-title text-black">{book.title}</h2>
+                        </div>
+                      </div>
+                      <div className="mt-5">
+                        <div className="flex flex-col">
+                          <label htmlFor="id" className="text-black font-bold p-2">ID Book</label>
+                          <h2 className="text-white badge-info w-max px-2 py-1 rounded-full text-bold">{book.id.replace("X", "")}</h2>
+                        </div>
+                        <div className="flex flex-col mt-5">
+                          <label htmlFor="id" className="text-black font-bold p-2">Borrower Name</label>
+                          <input type="text" placeholder="Example Wonderkit" className="input input-bordered input-black w-full bg-white text-black" value={borrow} onChange={(e: any) => setBorrower(e.target.value)} />
+                        </div>
+                      </div>
+                      <button className="btn mt-10" onClick={() => borrowingBook(book.id.replace("X", ""), borrow)}>
+                        Borrow
+                      </button>
+                    </form>
+                  </dialog>
                   <QRCodeSVG className="shadow-md" value={`http://localhost:5173/profile/${book.id}`} size={150} />
                 </td>
               </tr>
