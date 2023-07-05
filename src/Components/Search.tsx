@@ -67,9 +67,9 @@ const Search = () => {
                                     </thead>
                                     <tbody>
                                         {
-                                            books && books.filter(book => {
+                                            books && books.filter((book:BookType) => {
                                                 return search.toLocaleLowerCase() === '' ? book : book.title.toLowerCase().includes(search.toLocaleLowerCase())
-                                            }).map(book => {
+                                            }).map((book:BookType) => {
                                                 return (
                                                     <tr key={book.id} className="border border-slate-400">
                                                         <td>

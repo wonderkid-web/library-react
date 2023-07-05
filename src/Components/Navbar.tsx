@@ -52,6 +52,17 @@ const Navbar = () => {
               >profile</NavLink>
             </li>
             <li>
+              <NavLink to={`/borrower`}
+                className={({ isActive, isPending }) =>
+                  isActive
+                    ? "bg-warning rounded-full p-2 text-white"
+                    : isPending
+                      ? "pending"
+                      : ""
+                }
+              >Borrower</NavLink>
+            </li>
+            <li>
               <img className="rounded-full" src="https://images7.alphacoders.com/500/500493.jpg" width={40} />
             </li>
           </ul>

@@ -14,6 +14,14 @@ export interface BookType{
   book:any;
 }
 
+export interface BorrowerType{
+  id: number;
+  idBook: number;
+  borrower: string;
+  created_at: string;
+  updated_at: string;
+}
+
 const RootLayout = () => {
   return (
     <div>

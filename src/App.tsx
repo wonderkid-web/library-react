@@ -4,6 +4,7 @@ import Search from "./Components/Search";
 import SectionOne from "./Components/SectionOne"
 import RootLayout from "./Components/RootLayout";
 import Error from "./Components/Error";
+import Borrower, {getBorrower} from "./Components/Borrower";
 
 
 
@@ -27,6 +28,11 @@ function App() {
         {
           path: '/search',
           element: <Search />,
+        },
+        {
+          path: 'borrower',
+          element: <Borrower />,
+          loader: getBorrower
         }
       ]
     }
