@@ -3,6 +3,7 @@ import { BookType } from "./RootLayout";
 import { QRCodeSVG } from 'qrcode.react';
 import { useState } from "react";
 
+
 export const getBookById = async ({ params }: any) => {
   const raw = await fetch(`https://www.dbooks.org/api/book/${params.id}`)
   const data = await raw.json()

@@ -27,7 +27,7 @@ const Borrower = () => {
                     </thead>
                     <tbody>
                     {
-                        (borrower as unknown as BookType).map((book:BorrowerType)=>{
+                        (borrower).map((book:BorrowerType)=>{
                             return(
                                 <tr>
                                     <td>ID: {book.id}</td>
