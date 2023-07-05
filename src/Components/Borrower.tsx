@@ -23,6 +23,7 @@ const Borrower = () => {
                             <th>Borrower</th>
                             <th>Borrowed Time</th>
                             <th>Giving Back Time</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -35,6 +36,7 @@ const Borrower = () => {
                                     <td>{book.borrower}</td>
                                     <td>{book.created_at}</td>
                                     <td>{book.updated_at}</td>
+                                    <td><button className="btn btn-error">Delete</button></td>
                                 </tr>
                             )
                         })
