@@ -1,7 +1,6 @@
 import { useLoaderData } from "react-router-dom";
 import { BookType } from "./RootLayout";
 import { QRCodeSVG } from 'qrcode.react';
-// import Background from "/public/sssurf.svg"
 
 export const getBookById = async ({ params }: any) => {
   const raw = await fetch(`https://www.dbooks.org/api/book/${params.id}`)
@@ -9,7 +8,22 @@ export const getBookById = async ({ params }: any) => {
   return data
 }
 
+
 const BookProfile = () => {
+
+  const borrowingBook = async (idBook:string, borrower:string) => {
+    await fetch('http://localhost:3000/borrowing', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'Application/Json'
+      },
+      body: JSON.stringify({
+        idBook,
+        borrower
+      })
+    });
+    console.log('data tertambah')
+  }
 
   const book = useLoaderData() as BookType
 
@@ -62,8 +76,8 @@ const BookProfile = () => {
                     <button className="btn join-item btn-warning font-bold">
                       <a href={book.download}>Download</a>
                     </button>
-                    <button className="btn join-item btn-warning font-bold">
-                      <a href={`profile/${book.id}`}>Borrow</a>
+                    <button className="btn join-item btn-warning font-bold" onClick={()=>borrowingBook(book.id, "wonder")}>
+                      Borrow
                     </button>
                   </div>
                   <QRCodeSVG className="shadow-md" value={`http://localhost:5173/profile/${book.id}`} size={150} />
