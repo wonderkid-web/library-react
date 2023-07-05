@@ -30,11 +30,11 @@ const Borrower = () => {
                         (borrower as unknown as BookType).map((book:BorrowerType)=>{
                             return(
                                 <tr>
-                                    <td>ID: {book.id}</td>
-                                    <td>ID: {book.idBook}</td>
-                                    <td>ID: {book.borrower}</td>
-                                    <td>ID: {book.created_at}</td>
-                                    <td>ID: {book.updated_at}</td>
+                                    <td>{book.id}</td>
+                                    <td>{book.idBook}</td>
+                                    <td>{book.borrower}</td>
+                                    <td>{book.created_at}</td>
+                                    <td>{book.updated_at}</td>
                                 </tr>
                             )
                         })
