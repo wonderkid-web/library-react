@@ -10,8 +10,6 @@ export const getBorrowedBook = async ({params}) =>{
 const User = () => {
   
     const borrowedBook = useLoaderData() as BorrowerType
-    console.log(borrowedBook);
-    
   
   return (
     <div>

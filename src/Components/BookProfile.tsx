@@ -76,7 +76,7 @@ const BookProfile = () => {
                     <button className="btn join-item btn-warning font-bold">
                       <a href={book.download}>Download</a>
                     </button>
-                    <button className="btn join-item btn-warning font-bold" onClick={()=>borrowingBook(book.id, "kiki")}>
+                    <button className="btn join-item btn-warning font-bold" onClick={()=>borrowingBook(book.id, "afif")}>
                       Borrow
                     </button>
                   </div>

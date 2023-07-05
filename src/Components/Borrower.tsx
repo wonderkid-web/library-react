@@ -4,7 +4,7 @@ import { BorrowerType } from "./RootLayout"
 export const getBorrower = async () => {
     const raw = await fetch('http://localhost:3000/book')
     const data = await raw.json()
-    return data.details
+    return data
 }
 
 const Borrower = () => {
