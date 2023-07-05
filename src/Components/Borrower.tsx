@@ -4,7 +4,7 @@ import { BorrowerType } from "./RootLayout"
 export const getBorrower = async () => {
     const raw = await fetch('http://localhost:3000/book')
     const data = await raw.json()
-    return data
+    return data.details
 }
 
 const Borrower = () => {
@@ -12,23 +12,37 @@ const Borrower = () => {
     const borrower = useLoaderData() as BorrowerType
 
     return (
-        <div className="">
-            <ul className="list-disc">
-                {
-                    borrower.map((data: BorrowerType) => {
-                        return (
-                            <>
-                                <li>ID: {data.id}</li>
-                                <li>ID: {data.idBook}</li>
-                                <li>ID: {data.borrower}</li>
-                                <li>ID: {data.created_at}</li>
-                                <li>ID: {data.updated_at}</li>
-                                <hr />
-                            </>
-                        )
-                    })
-                }
-            </ul>
+        <div className="mt-[70px]">
+            <div className="overflow-x-auto">
+                <table className="table table-zebra">
+                    {/* head */}
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>Book ID</th>
+                            <th>Borrower</th>
+                            <th>Borrowed Time</th>
+                            <th>Giving Back Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {
+                        (borrower as unknown as BookType).map((book:BorrowerType)=>{
+                            return(
+                                <tr>
+                                    <td>ID: {book.id}</td>
+                                    <td>ID: {book.idBook}</td>
+                                    <td>ID: {book.borrower}</td>
+                                    <td>ID: {book.created_at}</td>
+                                    <td>ID: {book.updated_at}</td>
+                                </tr>
+                            )
+                        })
+                    }
+                    </tbody>
+                </table>
+            </div>
+                
         </div>
     )
 }

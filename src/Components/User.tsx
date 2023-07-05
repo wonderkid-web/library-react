@@ -1,7 +1,7 @@
 import { useLoaderData } from "react-router-dom"
 import { BorrowerType } from "./RootLayout"
 
-export const getBorrowedBook = async ({params}) =>{
+export const getBorrowedBook = async ({params} : any) =>{
     const raw = await fetch(`http://localhost:3000/user/${params.name}`)
     const data = await raw.json()
     return data
@@ -15,7 +15,7 @@ const User = () => {
     <div>
         <h1>Profile</h1>
         {
-            borrowedBook.map((book:BorrowerType)=>{
+            (borrowedBook as unknown as BorrowerType[]).map((book:BorrowerType)=>{
                 return(
                     <>
                     <h1>{book.id}</h1>

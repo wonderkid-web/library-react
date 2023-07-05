@@ -76,7 +76,7 @@ const BookProfile = () => {
                     <button className="btn join-item btn-warning font-bold">
                       <a href={book.download}>Download</a>
                     </button>
-                    <button className="btn join-item btn-warning font-bold" onClick={()=>borrowingBook(book.id, "afif")}>
+                    <button className="btn join-item btn-warning font-bold" onClick={()=>borrowingBook(book.id, "balmon")}>
                       Borrow
                     </button>
                   </div>
@@ -87,7 +87,7 @@ const BookProfile = () => {
           </table>
         </div>
         <div className="hidden p-12 lg:block mt-[125px]">
-          <img src={book.image} alt="Book" className="rounded-xl shadow-xl" />
+          <img src={book.image} alt="Book" className="rounded-xl shadow-xl w-[350px]" />
         </div>
       </div>
     </section>
