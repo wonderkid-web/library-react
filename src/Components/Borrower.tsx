@@ -1,5 +1,6 @@
 import { useLoaderData } from "react-router-dom"
 import { BorrowerType } from "./RootLayout"
+import moment from "moment"
 
 export const getBorrower = async () => {
     const raw = await fetch('http://localhost:3000/book')
@@ -12,9 +13,9 @@ const Borrower = () => {
     const borrower = useLoaderData() as BorrowerType
 
     return (
-        <div className="mt-[70px]">
+        <div className="mt-[70px] p-12">
             <div className="overflow-x-auto">
-                <table className="table table-zebra">
+                <table className="table ">
                     {/* head */}
                     <thead>
                         <tr>
@@ -34,8 +35,8 @@ const Borrower = () => {
                                     <td>{book.id}</td>
                                     <td>{book.idBook}</td>
                                     <td>{book.borrower}</td>
-                                    <td>{book.created_at}</td>
-                                    <td>{book.updated_at}</td>
+                                    <td>{moment(book.created_at).format('MM-DD-YYYY')}</td>
+                                    <td>{moment(book.updated_at).format('MM-DD-YYYY')}</td>
                                     <td><button className="btn btn-error">Delete</button></td>
                                 </tr>
                             )
