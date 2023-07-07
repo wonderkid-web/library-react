@@ -1,9 +1,23 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import image from "/Bulat.svg"
+import { useUserAuth } from "../context/UserAuthContext";
 
 const Navbar = () => {
+
+  const {logOut, user} = useUserAuth()
+  const navigate = useNavigate()
+
+  const handleLogout = async () =>{
+    try{
+      await logOut()
+      return navigate('/login')
+    }catch(e){
+      console.error(e.message)
+    }
+  }
+
   return (
-    <div className="navbar border fixed top-0 z-50 bg-[#fdf9f3]">
+    <div className="navbar border bg-[#fdf9f3]">
       <div className="flex-1 normal-case text-xl cursor-pointer font-bold p-2">
         <div className="flex justify-center items-center flex-wrap">
           <span>
@@ -63,7 +77,22 @@ const Navbar = () => {
               >Borrower</NavLink>
             </li>
             <li>
-              <img className="rounded-full" src="https://images7.alphacoders.com/500/500493.jpg" width={40} />
+              <NavLink
+                className={({ isActive, isPending }) =>
+                  isActive
+                    ? "bg-warning rounded-full p-2 text-white"
+                    : isPending
+                      ? "pending"
+                      : ""
+                }
+                onClick={()=>handleLogout()}
+              >Logout</NavLink>
+            </li>
+            <li>
+              <img className="rounded-full" src={
+                user ? `${user.photoURL}` :
+                `https://images7.alphacoders.com/500/500493.jpg`
+                } width={40} />
             </li>
           </ul>
         </div>

@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom"
+import { Outlet, useLocation } from "react-router-dom"
 import Navbar from "./Navbar"
 
 export interface BookType{
@@ -25,9 +25,12 @@ export interface BorrowerType{
 }
 
 const RootLayout = () => {
+  const location = useLocation()
   return (
     <div>
-        <Navbar />
+    {
+      location.pathname != '/login' && '/signup' && <Navbar />
+    }
         <Outlet />
     </div>
   )
