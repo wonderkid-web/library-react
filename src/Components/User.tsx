@@ -1,6 +1,5 @@
 import { useLoaderData } from "react-router-dom"
 import { BorrowerType } from "./RootLayout"
-import moment from "moment"
 
 export const getBorrowedBook = async ({params} : any) =>{
     const raw = await fetch(`http://localhost:3000/user/${params.name}`)
@@ -22,8 +21,8 @@ const User = () => {
                     <h1>{book.id}</h1>
                     <h1>{book.borrower}</h1>
                     <h1>{book.idBook}</h1>
-                    <h1>{moment(book.created_at).format('MM-DD-YYYY')}</h1>
-                    <h1>{moment(book.updated_at).format('MM-DD-YYYY')}</h1>
+                    <h1>{book.created_at}</h1>
+                    <h1>{book.updated_at}</h1>
                     </>
                 )
             })

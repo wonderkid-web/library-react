@@ -1,7 +1,10 @@
 import { useLoaderData } from "react-router-dom";
 import { BookType } from "./RootLayout";
 import { QRCodeSVG } from 'qrcode.react';
-import { useState } from "react";
+import { useUserAuth } from "../context/UserAuthContext";
+import { useEffect, useState } from "react";
+
+
 
 export const getBookById = async ({ params }: any) => {
   const raw = await fetch(`https://www.dbooks.org/api/book/${params.id}`)
@@ -11,24 +14,34 @@ export const getBookById = async ({ params }: any) => {
 
 
 const BookProfile = () => {
-  const [borrow, setBorrower] = useState()
+  const { user } = useUserAuth()
+  const [success, setSuccess] = useState()
+  const [fail, setFail] = useState()
+  const [alert, setAlert] = useState()
+
+
 
   const borrowingBook = async (idBook: string, borrower: string) => {
-    await fetch('http://localhost:3000/borrowing', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'Application/Json'
-      },
-      body: JSON.stringify({
-        idBook,
-        borrower
+    try {
+      await fetch('http://localhost:3000/borrowing', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'Application/Json'
+        },
+        body: JSON.stringify({
+          idBook,
+          borrower
+        })
       })
-    }).then((res) => {
-      console.log(res)
-      console.log('data tertambah')
-    }).catch((err) => {
-      console.log(err)
-    });
+
+    } catch (e) {
+      console.log('gagal')
+      setFail(true)
+      setTimeout(() => {
+        setFail(false)
+      }, 3000)
+      console.log(e.message)
+    }
   }
 
   const book = useLoaderData() as BookType
@@ -82,9 +95,11 @@ const BookProfile = () => {
                     <button className="btn join-item btn-primary border-r border-white font-bold">
                       <a href={book.download}>Download</a>
                     </button>
-                    <button className="btn join-item btn-primary border-l border-white font-bold" onClick={() => borrowModal.showModal()}>Borrow</button>
+                    <button className="btn join-item btn-primary border-l border-white font-bold" onClick={() => {
+                      borrowingBook(book.id.replace("X", ""), user.displayName)
+                    }}>Borrow</button>
                   </div>
-                  <dialog id="borrowModal" className="modal">
+                  {/* <dialog id="borrowModal" className="modal">
                     <form method="dialog" className="modal-box bg-white">
                       <div className="card card-side border">
                         <figure><img src={book.image} alt="Movie" className="" /></figure>
@@ -102,11 +117,9 @@ const BookProfile = () => {
                           <input type="text" placeholder="Example Wonderkit" className="input input-bordered input-black w-full bg-white text-black" value={borrow} onChange={(e: any) => setBorrower(e.target.value)} />
                         </div>
                       </div>
-                      <button className="btn mt-10" onClick={() => borrowingBook(book.id.replace("X", ""), borrow)}>
-                        Borrow
-                      </button>
+                     
                     </form>
-                  </dialog>
+                  </dialog> */}
                   <QRCodeSVG className="shadow-md" value={`http://localhost:5173/profile/${book.id}`} size={150} />
                 </td>
               </tr>
@@ -117,6 +130,20 @@ const BookProfile = () => {
           <img src={book.image} alt="Book" className="rounded-xl shadow-xl w-[350px]" />
         </div>
       </div>
+      {
+        success &&
+        <div className="alert alert-success">
+          <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+          <span>Buku kamu berhasil dipinjam!!</span>
+        </div>
+      }
+      {
+        fail &&
+        <div className="alert alert-error">
+          <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+          <span>Buku gagal di pinjam! karna sudah ada buku yang sama.</span>
+        </div>
+      }
     </section>
   );
 };

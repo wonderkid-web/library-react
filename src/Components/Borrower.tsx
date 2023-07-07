@@ -28,24 +28,24 @@ const Borrower = () => {
                         </tr>
                     </thead>
                     <tbody>
-                    {
-                        (borrower as unknown as BookType).map((book:BorrowerType)=>{
-                            return(
-                                <tr>
-                                    <td>{book.id}</td>
-                                    <td>{book.idBook}</td>
-                                    <td>{book.borrower}</td>
-                                    <td>{moment(book.created_at).format('MM-DD-YYYY')}</td>
-                                    <td>{moment(book.updated_at).format('MM-DD-YYYY')}</td>
-                                    <td><button className="btn btn-error">Delete</button></td>
-                                </tr>
-                            )
-                        })
-                    }
+                        {
+                            (borrower).map((book: BorrowerType) => {
+                                return (
+                                    <tr>
+                                        <td>{book.id}</td>
+                                        <td>{book.idBook}</td>
+                                        <td>{book.borrower}</td>
+                                        <td>{book.created_at}</td>
+                                        <td>{book.updated_at}</td>
+                                        <td><button className="btn btn-error">Delete</button></td>
+                                    </tr>
+                                )
+                            })
+                        }
                     </tbody>
                 </table>
             </div>
-                
+
         </div>
     )
 }

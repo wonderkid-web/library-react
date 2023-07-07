@@ -1,13 +1,18 @@
 import { FaSearch } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useUserAuth } from "../context/UserAuthContext";
 
 export default function SectionOne() {
+  const {user} = useUserAuth()
+  console.log(user)
+
   return (
     <>
       {/* Left */}
       <section className="min-h-screen flex justify-center items-center">
         <div className="container flex p-16 mx-auto">
           <div className="flex flex-col">
+            {user && <h1>{user.email}</h1>}
             <div className="flex gap-5">
               <span className="font-poppins text-[50px] font-bold">Perpustakaan</span>
               <img

@@ -4,8 +4,12 @@ import Search from "./Components/Search";
 import SectionOne from "./Components/SectionOne"
 import RootLayout from "./Components/RootLayout";
 import Error from "./Components/Error";
-import Borrower, {getBorrower} from "./Components/Borrower";
+import Borrower, { getBorrower } from "./Components/Borrower";
 import User, { getBorrowedBook } from "./Components/User";
+import ProtectedRoute from "./Components/ProtectedRoute";
+import Login from "./Components/Login";
+import { UserAuthcontextProvider } from "./context/UserAuthContext";
+import Signup from "./Components/Signup";
 
 
 
@@ -19,7 +23,11 @@ function App() {
         {
           path: '/',
           errorElement: <Error />,
-          element: <SectionOne />
+          element: (
+            <ProtectedRoute>
+              <SectionOne />
+            </ProtectedRoute>
+          )
         },
         {
           path: '/bookProfile/:id',
@@ -39,6 +47,13 @@ function App() {
           path: '/borrower',
           element: <Borrower />,
           loader: getBorrower
+        },
+        {
+          path: '/login',
+          element: <Login />
+        },{
+          path: '/signup',
+          element: <Signup />
         }
       ]
     }
@@ -48,7 +63,9 @@ function App() {
 
   return (
     <>
-      <RouterProvider router={router} />
+      <UserAuthcontextProvider>
+        <RouterProvider router={router} />
+      </UserAuthcontextProvider>
     </>
   )
 }
