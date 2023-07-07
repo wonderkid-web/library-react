@@ -35,8 +35,8 @@ const BookProfile = () => {
         body: JSON.stringify({
           idBook,
           borrower,
-          imgURL
-          
+          imgURL,
+          status: true
         })
       })
       console.log(book.image);
