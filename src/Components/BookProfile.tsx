@@ -2,7 +2,9 @@ import { useLoaderData } from "react-router-dom";
 import { BookType } from "./RootLayout";
 import { QRCodeSVG } from 'qrcode.react';
 import { useUserAuth } from "../context/UserAuthContext";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+
+
 
 
 
@@ -14,6 +16,8 @@ export const getBookById = async ({ params }: any) => {
 
 
 const BookProfile = () => {
+  const book = useLoaderData() as BookType
+
   const { user } = useUserAuth()
   const [success, setSuccess] = useState()
   const [fail, setFail] = useState()
@@ -21,7 +25,7 @@ const BookProfile = () => {
 
 
 
-  const borrowingBook = async (idBook: string, borrower: string) => {
+  const borrowingBook = async (idBook: string, borrower: string, imgURL:string) => {
     try {
       await fetch('http://localhost:3000/borrowing', {
         method: 'POST',
@@ -30,10 +34,14 @@ const BookProfile = () => {
         },
         body: JSON.stringify({
           idBook,
-          borrower
+          borrower,
+          imgURL
+          
         })
       })
-
+      console.log(book.image);
+      console.log(url);
+      
     } catch (e) {
       console.log('gagal')
       setFail(true)
@@ -44,7 +52,6 @@ const BookProfile = () => {
     }
   }
 
-  const book = useLoaderData() as BookType
 
   return (
     <section className="min-h-screen p-12">
@@ -96,30 +103,10 @@ const BookProfile = () => {
                       <a href={book.download}>Download</a>
                     </button>
                     <button className="btn join-item btn-primary border-l border-white font-bold" onClick={() => {
-                      borrowingBook(book.id.replace("X", ""), user.displayName)
+                      borrowingBook(book.id.replace("X", ""), user.displayName, book.image)
                     }}>Borrow</button>
                   </div>
-                  {/* <dialog id="borrowModal" className="modal">
-                    <form method="dialog" className="modal-box bg-white">
-                      <div className="card card-side border">
-                        <figure><img src={book.image} alt="Movie" className="" /></figure>
-                        <div className="card-body">
-                          <h2 className="card-title text-black">{book.title}</h2>
-                        </div>
-                      </div>
-                      <div className="mt-5">
-                        <div className="flex flex-col">
-                          <label htmlFor="id" className="text-black font-bold p-2">ID Book</label>
-                          <h2 className="text-white badge-info w-max px-2 py-1 rounded-full text-bold">{book.id.replace("X", "")}</h2>
-                        </div>
-                        <div className="flex flex-col mt-5">
-                          <label htmlFor="id" className="text-black font-bold p-2">Borrower Name</label>
-                          <input type="text" placeholder="Example Wonderkit" className="input input-bordered input-black w-full bg-white text-black" value={borrow} onChange={(e: any) => setBorrower(e.target.value)} />
-                        </div>
-                      </div>
-                     
-                    </form>
-                  </dialog> */}
+
                   <QRCodeSVG className="shadow-md" value={`http://localhost:5173/profile/${book.id}`} size={150} />
                 </td>
               </tr>

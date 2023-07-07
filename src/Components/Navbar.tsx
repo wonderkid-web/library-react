@@ -1,17 +1,18 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import image from "/Bulat.svg"
 import { useUserAuth } from "../context/UserAuthContext";
 
 const Navbar = () => {
 
-  const {logOut, user} = useUserAuth()
+  const { logOut, user } = useUserAuth()
+
   const navigate = useNavigate()
 
-  const handleLogout = async () =>{
-    try{
+  const handleLogout = async () => {
+    try {
       await logOut()
       return navigate('/login')
-    }catch(e){
+    } catch (e) {
       console.error(e.message)
     }
   }
@@ -35,19 +36,20 @@ const Navbar = () => {
           <ul className="flex gap-4 ml-12 ">
             <li>
               <NavLink to={`/`}
-                className={({ isActive, isPending }) =>
-                  isActive
-                    ? "bg-warning rounded-lg p-2 text-white"
-                    : isPending
-                      ? "pending"
-                      : ""
+                className={
+                  ({ isActive, isPending }) =>
+                    isActive
+                      ? "bg-warning  rounded-lg p-2 text-white"
+                      : isPending
+                        ? "pending"
+                        : ""
                 }
               >Beranda</NavLink></li>
             <li>
               <NavLink to={`/search`}
                 className={({ isActive, isPending }) =>
                   isActive
-                    ? "bg-warning rounded-lg p-2 text-white"
+                    ? "bg-warning  rounded-lg p-2 text-white"
                     : isPending
                       ? "pending"
                       : ""
@@ -55,21 +57,10 @@ const Navbar = () => {
               >Search</NavLink>
             </li>
             <li>
-              <NavLink to={`/bookprofile/:id`}
-                className={({ isActive, isPending }) =>
-                  isActive
-                    ? "bg-warning rounded-full p-2 text-white"
-                    : isPending
-                      ? "pending"
-                      : ""
-                }
-              >profile</NavLink>
-            </li>
-            <li>
               <NavLink to={`/borrower`}
                 className={({ isActive, isPending }) =>
                   isActive
-                    ? "bg-warning rounded-full p-2 text-white"
+                    ? "bg-warning  rounded-full p-2 text-white"
                     : isPending
                       ? "pending"
                       : ""
@@ -77,22 +68,28 @@ const Navbar = () => {
               >Borrower</NavLink>
             </li>
             <li>
-              <NavLink
-                className={({ isActive, isPending }) =>
-                  isActive
-                    ? "bg-warning rounded-full p-2 text-white"
-                    : isPending
-                      ? "pending"
-                      : ""
-                }
-                onClick={()=>handleLogout()}
-              >Logout</NavLink>
-            </li>
-            <li>
-              <img className="rounded-full" src={
-                user ? `${user.photoURL}` :
-                `https://images7.alphacoders.com/500/500493.jpg`
-                } width={40} />
+              <div className="dropdown dropdown-end">
+                <label tabIndex={0} className="btn bg-transparent border-none rounded-full">
+                  <img className="rounded-full" src={
+                    user ? `${user.photoURL}` :
+                      `https://images7.alphacoders.com/500/500493.jpg`
+                  } width={40} />
+                </label>
+                <ul tabIndex={0} className="dropdown-content z-[1] menu shadow bg-base-100 rounded-box w-52">
+                  <li>
+                    {
+                      user &&
+                      <Link to={`/user/${user.displayName}`}>Profile</Link>
+                    }
+                  </li>
+                  <li>
+                    <p onClick={() => handleLogout()}>
+                      Logout
+                    </p>
+                  </li>
+                </ul>
+              </div>
+
             </li>
           </ul>
         </div>
