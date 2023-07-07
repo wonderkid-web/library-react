@@ -1,6 +1,7 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import image from "/Bulat.svg"
 import { useUserAuth } from "../context/UserAuthContext";
+import { FaSignOutAlt, FaUser } from "react-icons/fa";
 
 const Navbar = () => {
 
@@ -18,83 +19,89 @@ const Navbar = () => {
   }
 
   return (
-    <div className="navbar border bg-[#fdf9f3]">
-      <div className="flex-1 normal-case text-xl cursor-pointer font-bold p-2">
-        <div className="flex justify-center items-center flex-wrap">
-          <span>
+    <div>
+      <div className="navbar border-b shadow-sm px-6 h-3">
+        <div className="flex-1">
+          <span className="text-xl font-bold">
             Library Panda
           </span>
           <img
             src={image}
             alt="Bulat Tapi Bukan Tekad"
-            className="w-[50px] ml-3"
+            className="w-[55px] ml-3"
           />
         </div>
-      </div>
-      <div className="flex-none gap-2">
-        <div className="right items-center justify-self-end mr-8 cursor-pointer">
-          <ul className="flex gap-4 ml-12 ">
-            <li>
-              <NavLink to={`/`}
-                className={
-                  ({ isActive, isPending }) =>
-                    isActive
-                      ? "bg-warning  rounded-lg p-2 text-white"
-                      : isPending
-                        ? "pending"
-                        : ""
-                }
-              >Beranda</NavLink></li>
-            <li>
-              <NavLink to={`/search`}
-                className={({ isActive, isPending }) =>
-                  isActive
-                    ? "bg-warning  rounded-lg p-2 text-white"
-                    : isPending
-                      ? "pending"
-                      : ""
-                }
-              >Search</NavLink>
-            </li>
-            <li>
-              <NavLink to={`/borrower`}
-                className={({ isActive, isPending }) =>
-                  isActive
-                    ? "bg-warning  rounded-full p-2 text-white"
-                    : isPending
-                      ? "pending"
-                      : ""
-                }
-              >Borrower</NavLink>
-            </li>
-            <li>
-              <div className="dropdown dropdown-end">
-                <label tabIndex={0} className="btn bg-transparent border-none rounded-full">
-                  <img className="rounded-full" src={
-                    user ? `${user.photoURL}` :
-                      `https://images7.alphacoders.com/500/500493.jpg`
-                  } width={40} />
-                </label>
-                <ul tabIndex={0} className="dropdown-content z-[1] menu shadow bg-base-100 rounded-box w-52">
-                  <li>
-                    {
-                      user &&
-                      <Link to={`/user/${user.displayName}`}>Profile</Link>
+        <div className="flex justify-center items-center">
+          <div className="flex-none">
+            <ul className="menu menu-horizontal ">
+              <li>
+                <div className="indicator">
+                  <NavLink to={`/`}
+                    className={
+                      ({ isActive, isPending }) =>
+                        isActive
+                          ? "bg-warning font-bold rounded-lg p-2 text-white"
+                          : isPending
+                            ? "pending p-2"
+                            : "p-2 font-bold"
                     }
-                  </li>
-                  <li>
-                    <p onClick={() => handleLogout()}>
-                      Logout
-                    </p>
-                  </li>
-                </ul>
+                  >Beranda</NavLink>
+                </div>
+              </li>
+              <li>
+                <div className="indicator">
+                  <NavLink to={`/search`}
+                    className={({ isActive, isPending }) =>
+                      isActive
+                        ? "bg-warning font-bold rounded-lg p-2 text-white"
+                        : isPending
+                          ? "pending p-2"
+                          : "p-2 font-bold"
+                    }
+                  >Search</NavLink>
+                </div>
+              </li>
+              <li>
+                <div className="indicator">
+                  <NavLink to={`/borrower`}
+                    className={({ isActive, isPending }) =>
+                      isActive
+                        ? "bg-warning font-bold rounded-lg p-2 text-white"
+                        : isPending
+                          ? "pending p-2"
+                          : "p-2 font-bold"
+                    }
+                  >Borrower</NavLink>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div className="dropdown dropdown-end">
+            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+              <div className="w-10 rounded-full">
+                <img className="rounded-full" src={
+                  user ? `${user.photoUrl}` :
+                    `https://images7.alphacoders.com/500/500493.jpg`
+                } width={40} />
               </div>
-
-            </li>
-          </ul>
+            </label>
+            <ul tabIndex={0} className="menu menu-lg dropdown-content mt-3 z-[1] p-2 shadow-lg rounded-box w-52 bg-base-100 text-white">
+              <li>
+                {
+                  user &&
+                  <Link to={`/user/${user.displayName}`}>Profile <FaUser /></Link>
+                }
+              </li>
+              <li>
+                <p onClick={() => handleLogout()}>
+                  Logout <FaSignOutAlt />
+                </p>
+              </li>
+            </ul>
+          </div>
         </div>
-      </div>
-    </div>
+      </div >
+    </div >
   )
 }
 

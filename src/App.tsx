@@ -1,7 +1,7 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import BookProfile, { getBookById } from "./Components/BookProfile";
 import Search from "./Components/Search";
-import SectionOne from "./Components/SectionOne"
+import SectionOne, { getNews } from "./Components/SectionOne"
 import RootLayout from "./Components/RootLayout";
 import Error from "./Components/Error";
 import Borrower, { getBorrower } from "./Components/Borrower";
@@ -51,7 +51,8 @@ function App() {
         {
           path: '/login',
           element: <Login />
-        },{
+        },
+        {
           path: '/signup',
           element: <Signup />
         }

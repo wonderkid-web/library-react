@@ -16,11 +16,11 @@ export const UserAuthcontextProvider = ({ children }) => {
 
     const [user, setUser] = useState()
 
-    const signUp = ({email, password}) => {
+    const signUp = () => {
         return createUserWithEmailAndPassword(auth, email, password)
     }
 
-    const signIn = (email, password) => {
+    const signIn = () => {
         return signInWithEmailAndPassword(auth, email, password)
     }
 
