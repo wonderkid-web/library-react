@@ -37,18 +37,18 @@ const Login = () => {
     }
 
     return (
-        <div className='w-1/2 mx-auto flex flex-col gap-4 my-4'>
+        <div className='w-1/2 mx-auto gap-4 flex flex-col gap-4 my-4'>
             <h1>Login</h1>
             {error && <h1 className="text-warning">{error}</h1>}
             {/* <p>Let's get started and sign in now!</p> */}
             <form>
                 <input onChange={(e)=>{
                     setEmail(e.target.value)
-                }} type="email" placeholder="Email" className="input input-bordered input-accent w-full max-w-xs" />
+                }} type="email" placeholder="Email" className="input input-bordered input-accent w-full max-w-xs my-2" />
                 <input onChange={(e)=>{
                     setPassword(e.target.value)
                 }} type="password" placeholder="Password" className="input input-bordered input-accent w-full max-w-xs" />
-                <button onClick={(e)=>handleSignin(e)} type="submit" className='btn mt-2 btn-warning w-fit'>Create Account</button>
+                <button onClick={(e)=>handleSignin(e)} type="submit" className='btn mt-2 btn-warning w-fit'>Sign in.</button>
             </form>
             <Link to={'/signup'} className="btn btn-warning w-fit ">Sign up?</Link>
                 <GoogleButton onClick={handleSigninWithGoogle}  />

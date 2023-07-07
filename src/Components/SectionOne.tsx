@@ -4,7 +4,6 @@ import { useUserAuth } from "../context/UserAuthContext";
 
 export default function SectionOne() {
   const {user} = useUserAuth()
-  console.log(user)
 
   return (
     <>
