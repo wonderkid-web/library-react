@@ -9,6 +9,18 @@ export const getBorrower = async () => {
 
 const Borrower = () => {
 
+    const handleStatus = async (idBook:number) =>{
+        await fetch('http://localhost:3000/change-status', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'Application/Json'
+            },
+            body: JSON.stringify({
+              idBook,
+            })
+          })
+    }
+
     const borrower = useLoaderData() as BorrowerType
 
     return (
@@ -30,13 +42,14 @@ const Borrower = () => {
                         {
                             (borrower).map((book: BorrowerType) => {
                                 return (
-                                    <tr>
+                                    <tr key={book.id}>
                                         <td>{book.id}</td>
                                         <td>{book.idBook}</td>
                                         <td>{book.borrower}</td>
                                         <td>{book.created_at}</td>
                                         <td>{book.updated_at}</td>
                                         <td><button className="btn btn-error">Delete</button></td>
+                                        <td><button onClick={()=>handleStatus(book.idBook)} className="btn btn-info">Done</button></td>
                                     </tr>
                                 )
                             })
