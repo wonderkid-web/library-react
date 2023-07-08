@@ -1,8 +1,11 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import image from "/Bulat.svg"
 import { useUserAuth } from "../context/UserAuthContext";
+import { useEffect, useState } from "react";
 
 const Navbar = () => {
+  const [photoURL, setPhotoURL] = useState("https://www.kindpng.com/picc/m/130-1300240_round-user-dry-clean-symbol-png-transparent-png.png")
+
 
   const { logOut, user } = useUserAuth()
 
@@ -16,6 +19,12 @@ const Navbar = () => {
       console.error(e.message)
     }
   }
+
+  useEffect(()=>{
+    if(user && user.photoURL){
+      setPhotoURL(user.photoURL)
+    }
+  },[user])
 
   return (
     <div className="navbar border bg-[#fdf9f3]">
@@ -70,10 +79,7 @@ const Navbar = () => {
             <li>
               <div className="dropdown dropdown-end">
                 <label tabIndex={0} className="btn bg-transparent border-none rounded-full">
-                  <img className="rounded-full" src={
-                    user ? `${user.photoURL}` :
-                      `https://images7.alphacoders.com/500/500493.jpg`
-                  } width={40} />
+                  <img className="rounded-full" src={photoURL} width={40} />
                 </label>
                 <ul tabIndex={0} className="dropdown-content z-[1] menu shadow bg-base-100 rounded-box w-52">
                   <li>
