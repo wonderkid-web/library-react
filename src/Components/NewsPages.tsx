@@ -15,6 +15,13 @@ function NewsPages() {
         setLoading(false)
     }
 
+    const getAllNewsQuery = async () => {
+        const raw = await fetch(`https://berita-indo-api.vercel.app/v1/cnbc-news/`);
+        const data = await raw.json();
+        setNewsAll(data.data)
+        setLoading(false)
+    }
+
     const handleFilterChange = (event: any) => {
         setFilter(event.target.value);
         console.log(event.target.value)
