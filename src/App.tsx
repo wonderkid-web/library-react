@@ -10,6 +10,7 @@ import ProtectedRoute from "./Components/ProtectedRoute";
 import Login from "./Components/Login";
 import { UserAuthcontextProvider } from "./context/UserAuthContext";
 import Signup from "./Components/Signup";
+import NewsPages from "./Components/NewsPages";
 
 
 
@@ -23,6 +24,7 @@ function App() {
         {
           path: '/',
           errorElement: <Error />,
+          loader: getNews,
           element: (
             <ProtectedRoute>
               <SectionOne />
@@ -55,6 +57,10 @@ function App() {
         {
           path: '/signup',
           element: <Signup />
+        },
+        {
+          path: '/news',
+          element: <NewsPages/>
         }
       ]
     }
