@@ -144,7 +144,7 @@ export default User
                     <h1>{book.borrower}</h1>
                     <h1>{book.idBook}</h1>
                     <h1>{book.created_at}</h1>
-                    <h1>{book.updated_at }</h1>
+                    <h1>{book.updated_at}</h1>
                     </>
                 )
             })

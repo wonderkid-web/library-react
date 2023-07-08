@@ -37,10 +37,10 @@ const Login = () => {
     }
 
     return (
-        <div className='w-1/2 mx-auto gap-4 flex flex-col gap-4 my-4'>
+        <div className='w-1/2 mx-auto flex flex-col gap-4 my-4 h-screen'>
             <h1>Login</h1>
             {error && <h1 className="text-warning">{error}</h1>}
-            {/* <p>Let's get started and sign in now!</p> */}
+            <p>Let's get started and sign in now!</p>
             <form>
                 <input onChange={(e)=>{
                     setEmail(e.target.value)

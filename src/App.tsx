@@ -1,7 +1,7 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import BookProfile, { getBookById } from "./Components/BookProfile";
 import Search from "./Components/Search";
-import SectionOne from "./Components/SectionOne"
+import SectionOne, { getNews } from "./Components/SectionOne"
 import RootLayout from "./Components/RootLayout";
 import Error from "./Components/Error";
 import Borrower, { getBorrower } from "./Components/Borrower";
@@ -10,6 +10,7 @@ import ProtectedRoute from "./Components/ProtectedRoute";
 import Login from "./Components/Login";
 import { UserAuthcontextProvider } from "./context/UserAuthContext";
 import Signup from "./Components/Signup";
+import NewsPages from "./Components/NewsPages";
 
 
 
@@ -23,6 +24,7 @@ function App() {
         {
           path: '/',
           errorElement: <Error />,
+          loader: getNews,
           element: (
             <ProtectedRoute>
               <SectionOne />
@@ -51,9 +53,14 @@ function App() {
         {
           path: '/login',
           element: <Login />
-        },{
+        },
+        {
           path: '/signup',
           element: <Signup />
+        },
+        {
+          path: '/news',
+          element: <NewsPages/>
         }
       ]
     }

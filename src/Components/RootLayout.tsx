@@ -24,6 +24,19 @@ export interface BorrowerType{
   updated_at: string;
 }
 
+export interface NewsType{
+  map: any;
+  contentSnippet: string;
+  isoDate: string;
+  link: string;
+  title: string;
+  image: string;
+  large: string;
+  small: string;
+  slice: any;
+  id: number;
+}
+
 const RootLayout = () => {
   const location = useLocation()
   return (
