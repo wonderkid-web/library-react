@@ -11,6 +11,7 @@ import Login from "./Components/Login";
 import { UserAuthcontextProvider } from "./context/UserAuthContext";
 import Signup from "./Components/Signup";
 import NewsPages from "./Components/NewsPages";
+import Countdown from "./Components/CountdownTemplate";
 
 
 
@@ -61,6 +62,10 @@ function App() {
         {
           path: '/news',
           element: <NewsPages/>
+        },
+        {
+          path: '/countdown',
+          element: <Countdown />
         }
       ]
     }

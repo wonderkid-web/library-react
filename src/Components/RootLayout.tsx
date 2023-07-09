@@ -13,6 +13,7 @@ export interface BookType{
   disabled: string;
   book:any;
   borrow: string;
+  return_at: string
 }
 
 export interface BorrowerType{

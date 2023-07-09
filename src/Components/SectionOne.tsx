@@ -3,6 +3,8 @@ import { Link, useLoaderData } from "react-router-dom";
 import moment from "moment";
 import { NewsType } from "./RootLayout";
 import { useUserAuth } from "../context/UserAuthContext";
+import { useEffect } from "react";
+import Countdown from "./CountdownTemplate";
 
 export const getNews = async () => {
   const raw = await fetch('https://berita-indo-api.vercel.app/v1/cnbc-news/tech')
@@ -10,9 +12,13 @@ export const getNews = async () => {
   return data.data;
 }
 
+
+
+
 export default function SectionOne() {
   const news = useLoaderData() as NewsType;
   const { user }: any = useUserAuth()
+
 
   return (
     <>
@@ -61,8 +67,8 @@ export default function SectionOne() {
       </section>
       <section className="w-full mx-auto my-auto p-12">
         <h1 className="font-bold text-slate-800 text-4xl text-center">News</h1>
-        {news.slice(0, 1).map((news: NewsType) => (
-          <div className="card lg:card-side p-12">
+        {news.slice(0, 1).map((news: NewsType, index:number) => (
+          <div key={index} className="card lg:card-side p-12">
             <figure className="rounded-xl"><img src={news.image.large} alt={news.title} className="w-[600px] h-96 rounded-xl flex-1" /></figure>
             <Link to={news.link}>
               <div className="card-body w-[600px] h-96">

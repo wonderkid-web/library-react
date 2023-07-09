@@ -3,6 +3,7 @@ import { BookType } from "./RootLayout";
 import { QRCodeSVG } from 'qrcode.react';
 import { useUserAuth } from "../context/UserAuthContext";
 import { useState } from "react";
+import moment from "moment";
 
 
 
@@ -25,7 +26,7 @@ const BookProfile = () => {
 
 
 
-  const borrowingBook = async (idBook: string, borrower: string, imgURL:string) => {
+  const borrowingBook = async (idBook: string, borrower: string, imgURL:string, return_at:string) => {
     try {
       await fetch('http://localhost:3000/borrowing', {
         method: 'POST',
@@ -36,20 +37,23 @@ const BookProfile = () => {
           idBook,
           borrower,
           imgURL,
-          status: true
+          status:true,
+          return_at
         })
-      })
-      console.log(book.image);
-      console.log(url);
-      
-    } catch (e) {
+      })} catch (e) {
       console.log('gagal')
-      setFail(true)
+      setFail(false)
       setTimeout(() => {
         setFail(false)
       }, 3000)
       console.log(e.message)
     }
+  }
+  
+  const handleBookReturnTime = () =>{
+    const dateFormat = "D, MMMM YYYY, kk:mm:ss"
+    const timestampsReturnBook = moment().format(dateFormat)
+    return new Date(timestampsReturnBook).getTime()
   }
 
 
@@ -103,7 +107,8 @@ const BookProfile = () => {
                       <a href={book.download}>Download</a>
                     </button>
                     <button className="btn join-item btn-primary border-l border-white font-bold" onClick={() => {
-                      borrowingBook(book.id.replace("X", ""), user.displayName, book.image)
+
+                      borrowingBook(book.id.replace("X", ""), user.displayName, book.image, handleBookReturnTime().toString())
                     }}>Borrow</button>
                   </div>
 

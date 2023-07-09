@@ -1,9 +1,13 @@
 import { useLoaderData } from "react-router-dom"
-import { BorrowerType } from "./RootLayout"
+import { BookType, BorrowerType } from "./RootLayout"
 import { useUserAuth } from "../context/UserAuthContext"
 import ReactPaginate from "react-paginate"
 import { FaAngleLeft, FaAngleRight } from "react-icons/fa"
 import { useEffect, useState } from "react"
+import moment from "moment-timezone"
+import Countdown from "react-countdown"
+import CountdownTemplate from "./CountdownTemplate"
+
 
 export const getBorrowedBook = async ({ params }: any) => {
     const raw = await fetch(`http://localhost:3000/user/${params.name}`)
@@ -22,13 +26,32 @@ const User = () => {
     const [photoFile, setPhotoFile] = useState()
     const [loading, setLoading] = useState(false)
     const [exstention, setExstention] = useState(null)
+    const [borrowTime, setBorrowTime] = useState()
     const [photoURL, setPhotoURL] = useState("https://www.kindpng.com/picc/m/130-1300240_round-user-dry-clean-symbol-png-transparent-png.png")
-    const rowsPerPage = 3;
+    const rowsPerPage = 5;
 
     const { user, uploadProfilePict } = useUserAuth()
 
-
     const borrowedBook = useLoaderData() as BorrowerType
+    
+    const formatLengkap = "D, MMMM YYYY, kk:mm:ss"
+
+
+    const Completionist = () => <span>Waktu pinjam buku kamu sudah habis nih, silahkan kembalikan buku kamu ke perpus yah!</span>;
+
+    const renderer = ({ days, hours, minutes, seconds, completed }) => {
+        if (completed) {
+            // Render a completed state
+            return <Completionist />;
+        } else {
+            // Render a countdown
+            return (
+              <CountdownTemplate days={days} hours={hours} minutes={minutes} seconds={seconds}  />
+            )
+            // return <span>{hours}:{minutes}:{seconds}</span>;
+        }
+    };
+
 
 
     const handlePageClick = (data: any) => {
@@ -36,29 +59,30 @@ const User = () => {
         setCurrentPage(selectedPage);
     };
 
-    const handleFile = (e) =>{
-        if(e.target.files[0]){
+    const handleFile = (e) => {
+        if (e.target.files[0]) {
             const ext = e.target.files[0].name.split('.').pop()
             setExstention(ext)
             setPhotoFile(e.target.files[0])
         }
     }
 
-    const handleUploadProfilePhoto = () =>{
+    const handleUploadProfilePhoto = () => {
         uploadProfilePict(photoFile, user, setLoading, exstention)
     }
 
-    useEffect(()=>{
-        if(user && user.photoURL){
+    useEffect(() => {
+        if (user && user.photoURL) {
             setPhotoURL(user.photoURL)
         }
-    },[user])
+    }, [user])
+
 
     return (
         <div className="h-fit">
             {
                 user ?
-                    <div className="card grid grid-cols-2 grid-rows-[300px_100px_w-fit_50px] gap-4 p-6 w-2/3 mx-auto my-6 card-side bg-base-100 shadow-xl">
+                    <div className="card w-full grid grid-cols-2 grid-rows-[300px_100px_w-fit_50px] gap-4 p-6 w-2/3 mx-auto card-side bg-base-100 shadow-xl">
                         <figure className="w-[200px] justify-self-center mask mask-squircle">
                             {user &&
                                 <img src={photoURL} alt="Movie" />
@@ -69,8 +93,8 @@ const User = () => {
                             <p>{user.email}</p>
                             <div className="card-actions justify-end">
                                 <div className="join">
-                                    <input onChange={(e)=>handleFile(e)} type="file" className="justify-self-center join-item file-input file-input-bordered file-input-warning w-full max-w-xs" />
-                                    <button disabled={loading} onClick={()=>handleUploadProfilePhoto()} className="btn btn-warning join-item">upload file</button>
+                                    <input onChange={(e) => handleFile(e)} type="file" className="justify-self-center join-item file-input file-input-bordered file-input-warning w-full max-w-xs" />
+                                    <button disabled={loading} onClick={() => handleUploadProfilePhoto()} className="btn btn-warning join-item">upload file</button>
                                 </div>
                             </div>
                         </div>
@@ -79,17 +103,20 @@ const User = () => {
                         <table className="col-span-2 mt-4 table border w-full">
                             <thead>
                                 <tr className="border border-slate-400">
-                                    <th className="text-lg text-slate-700">Cover</th>
-                                    <th className="text-lg text-slate-700">ID</th>
-                                    <th className="text-lg text-slate-700">Title</th>
-                                    {/* <th className="text-lg text-slate-700">Action</th> */}
+                                    <th className="text-lg text-center text-slate-700">NO</th>
+                                    <th className="text-lg text-center text-slate-700">Cover</th>
+                                    <th className="text-lg text-center text-slate-700">ID</th>
+                                    <th className="text-lg text-center text-slate-700">Waktu Peminjaman</th>
+                                    <th className="text-lg text-center text-slate-700">Waktu Pengembalian</th>
+                                    <th className="text-lg text-center text-slate-700">Waktu Pinjam yang Tersisa</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {borrowedBook
+                                {borrowedBook && borrowedBook
                                     .slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage)
-                                    .map((book: BookType) => (
+                                    .map((book: BookType, index: number) => (
                                         <tr key={book.id} className="border border-slate-400">
+                                            <td className="text-center">{index+1}</td>
                                             <td>
                                                 <div className="flex items-center space-x-3">
                                                     <div className="avatar">
@@ -103,8 +130,27 @@ const User = () => {
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td>{book.idBook}</td>
-                                            <td>{book.title}</td>
+                                            <td className="text-center">{book.idBook}</td>
+                                            <td className="text-center">
+                                                {
+                                                    moment(book.borrow_at).format(formatLengkap)
+                                                }
+                                            </td>
+                                            <td className="text-center">
+                                                {
+                                                    moment(book.borrow_at).add(3, 'd').format(formatLengkap)
+                                                }
+                                            </td>
+                                            <td className="text-center">
+                                                {
+                                                    <Countdown date={Number(book.return_at) + 259200000} renderer={renderer} />
+                                                }
+                                            </td>
+                                            {
+
+                                                // Number(moment(book.borrow_at).add(3, "days").format('x')
+                                                // console.log(moment(book.borrow_at).tz("Asia/Jakarta").add(3, "days").format('x'))
+                                            }
                                         </tr>
                                     ))}
                             </tbody>
@@ -116,7 +162,7 @@ const User = () => {
                                 breakLabel={"..."}
                                 pageCount={Math.ceil(borrowedBook.length / rowsPerPage)}
                                 marginPagesDisplayed={2}
-                                pageRangeDisplayed={3}
+                                pageRangeDisplayed={10}
                                 onPageChange={handlePageClick}
                                 containerClassName={"my-3 flex gap- justify-center items-center p-1 text-[#33272a] bg-[#ff8ba7] w-max rounded-lg text-white"}
                                 activeClassName={"bg-white text-slate-700"}
