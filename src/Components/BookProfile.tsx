@@ -2,12 +2,8 @@ import { useLoaderData } from "react-router-dom";
 import { BookType } from "./RootLayout";
 import { QRCodeSVG } from 'qrcode.react';
 import { useUserAuth } from "../context/UserAuthContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import moment from "moment";
-
-
-
-
 
 export const getBookById = async ({ params }: any) => {
   const raw = await fetch(`https://www.dbooks.org/api/book/${params.id}`)
@@ -20,120 +16,134 @@ const BookProfile = () => {
   const book = useLoaderData() as BookType
 
   const { user } = useUserAuth()
-  const [success, setSuccess] = useState()
-  const [fail, setFail] = useState()
-  const [alert, setAlert] = useState()
+  const [success, setSuccess] = useState(Boolean)
+  const [fail, setFail] = useState(Boolean)
+  const [loading, setLoading] = useState(false)
 
 
 
-  const borrowingBook = async (idBook: string, borrower: string, imgURL:string, return_at:string) => {
+  const borrowingBook = async (idBook: string, borrower: string, imgURL: string, return_at: string) => {
     try {
-      await fetch('http://localhost:3000/borrowing', {
-        method: 'POST',
+      setLoading(true)
+      const posting = await fetch('http://localhost:3006/borrowing', {
+        method: "POST",
         headers: {
-          'Content-Type': 'Application/Json'
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify({
           idBook,
           borrower,
           imgURL,
-          status:true,
+          status: true,
           return_at
         })
-      })} catch (e) {
-      console.log('gagal')
-      setFail(false)
-      setTimeout(() => {
-        setFail(false)
-      }, 3000)
+      })
+      if (posting.ok) {
+        setSuccess(true)
+      } else {
+        setFail(true)
+      }
+      setLoading(false)
+    } catch (e) {
       console.log(e.message)
     }
   }
-  
-  const handleBookReturnTime = () =>{
+
+  const handleBookReturnTime = () => {
     const dateFormat = "D, MMMM YYYY, kk:mm:ss"
     const timestampsReturnBook = moment().format(dateFormat)
     return new Date(timestampsReturnBook).getTime()
   }
 
 
+  useEffect(() => {
+    setTimeout(() => {
+      if (success || fail) {
+        setSuccess(false)
+        setFail(false)
+      }
+    }, 3000)
+  }, [success, fail])
+
   return (
     <section className="min-h-screen p-12">
-      <div className="container max-w-md mx-auto sm:max-w-xl  md:max-w-5xl lg:flex lg:max-w-full lg:p-0 lg:justify-center py-1 rounded-lg mb-0 bg-no-repeat">
-        <div className="lg:p-12 lg:flex-1 p-1">
-          <img src={book.image} alt="Book" className="rounded-xl shadow-xl sm:mt-6 mt-12 sm:h-64 sm:w-full sm:object-cover sm:object-top lg:hidden" />
-          <table className="table mt-5 bg-[#fdf9f3]">
-            <thead className=" border-none">
-              <tr>
-                <th className="text-xl sm:text-4xl md:text-4xl lg:text-4xl font-bold text-slate-800" colSpan={3}>
-                  <h1 className="text-xl sm:text-4xl md:text-4xl lg:text-4xl font-bold text-slate-800">{book.title}</h1>
-                  <span className="badge-info text-white rounded-full px-2 py-1 text-[15px]">{book.id}</span>
-                </th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className="border-none">
-                <th className="text-lg">Authors</th>
-                <td>:</td>
-                <td className="text-lg">{book.authors}</td>
-              </tr>
-              <tr className="border-none">
-                <th className="text-lg">ID</th>
-                <td>:</td>
-                <td className="text-lg">{book.id}</td>
-              </tr>
-              <tr className="border-none">
-                <th className="text-lg">Pages</th>
-                <td>:</td>
-                <td className="text-lg">{book.pages}</td>
-              </tr>
-              <tr className="border-none">
-                <th className="text-lg">Publisher</th>
-                <td>:</td>
-                <td className="text-lg">{book.publisher}</td>
-              </tr>
-              <tr className="border-none">
-                <th className="text-lg">Description</th>
-                <td>:</td>
-                <td className="text-lg text-justify">{book.description}</td>
-              </tr>
-              <tr className="border-none">
-                <td></td>
-                <td></td>
-                <td className="float-right lg:flex gap-36">
-                  <div className="join">
-                    <button className="btn join-item btn-primary border-r border-white font-bold">
-                      <a href={book.download}>Download</a>
-                    </button>
-                    <button className="btn join-item btn-primary border-l border-white font-bold" onClick={() => {
+      <div className="hero">
+        <div className="hero-content lg:flex-row">
+          <div className="justify-self-end">
+            <table className=" table mt-5 bg-[#fdf9f3]">
+              <thead className=" border-none">
+                <tr>
+                  <th className="text-xl sm:text-4xl md:text-4xl lg:text-4xl font-bold text-slate-800" colSpan={3}>
+                    <h1 className="text-xl sm:text-4xl md:text-4xl lg:text-4xl font-bold text-slate-800">{book.title}</h1>
+                    <span className="badge-info text-white rounded-full px-2 py-1 text-[15px]">{book.id}</span>
+                  </th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-none">
+                  <th className="text-lg">Authors</th>
+                  <td>:</td>
+                  <td className="text-lg">{book.authors}</td>
+                </tr>
+                <tr className="border-none">
+                  <th className="text-lg">ID</th>
+                  <td>:</td>
+                  <td className="text-lg">{book.id}</td>
+                </tr>
+                <tr className="border-none">
+                  <th className="text-lg">Pages</th>
+                  <td>:</td>
+                  <td className="text-lg">{book.pages}</td>
+                </tr>
+                <tr className="border-none">
+                  <th className="text-lg">Publisher</th>
+                  <td>:</td>
+                  <td className="text-lg">{book.publisher}</td>
+                </tr>
+                <tr className="border-none">
+                  <th className="text-lg">Description</th>
+                  <td>:</td>
+                  <td className="text-lg text-justify">{book.description}</td>
+                </tr>
+                <tr className="w-full">
+                  <td>
+                    <div className="flex w-full bg-red-500">
+                      <div className="join">
+                        <button className="btn join-item btn-primary border-r border-white font-bold">
+                          <a href={book.download}>Download</a>
+                        </button>
+                        <button disabled={loading} className="btn join-item btn-primary border-l border-white font-bold" onClick={() => {
 
-                      borrowingBook(book.id.replace("X", ""), user.displayName, book.image, handleBookReturnTime().toString())
-                    }}>Borrow</button>
-                  </div>
+                          borrowingBook(book.id.replace("X", ""), user.displayName, book.image, handleBookReturnTime().toString())
+                        }}>Borrow</button>
+                      </div>
+                      <QRCodeSVG className="self-end shadow-md" value={`http://localhost:5173/profile/${book.id}`} size={150} />
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <img src={book.image} alt="Book" className="rounded-xl w-5/6 shadow-xl" />
 
-                  <QRCodeSVG className="shadow-md" value={`http://localhost:5173/profile/${book.id}`} size={150} />
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div className="hidden p-12 lg:block mt-[125px]">
-          <img src={book.image} alt="Book" className="rounded-xl shadow-xl w-[350px]" />
+
         </div>
       </div>
       {
         success &&
-        <div className="alert alert-success">
-          <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-          <span>Buku kamu berhasil dipinjam!!</span>
+        <div className="toast toast-start">
+          <div className="alert alert-success">
+            <span>Buku kamu berhasil di pinjam!</span>
+          </div>
         </div>
       }
       {
         fail &&
-        <div className="alert alert-error">
-          <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-          <span>Buku gagal di pinjam! karna sudah ada buku yang sama.</span>
+        <div className="toast toast-start">
+          <div className="alert alert-warning">
+            <span>Kamu meminjam buku yang sama nih!!</span>
+          </div>
         </div>
       }
     </section>

@@ -17,6 +17,9 @@ const Search = () => {
         const raw = await fetch("https://www.dbooks.org/api/recent");
         const data = await raw.json();
         setBooks(data.books);
+        data.books.forEach(d=>console.log(d.title)
+        )
+        
         setIsLoading(false);
     };
 
@@ -36,6 +39,7 @@ const Search = () => {
     };
 
     useEffect(() => {
+        
         getBook();
     }, []);
 

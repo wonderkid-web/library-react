@@ -1,9 +1,10 @@
 import { useLoaderData } from "react-router-dom"
 import { BorrowerType } from "./RootLayout"
+
 // import moment from "moment"
 
 export const getBorrower = async () => {
-    const raw = await fetch('http://localhost:3000/book')
+    const raw = await fetch(`http://localhost:3006/book`)
     const data = await raw.json()
     return data.details
 }
@@ -11,7 +12,7 @@ export const getBorrower = async () => {
 const Borrower = () => {
 
     const handleStatus = async (idBook:number) =>{
-        await fetch('http://localhost:3000/change-status', {
+        await fetch(`https://localhost:3006/change-status`, {
             method: 'POST',
             headers: {
               'Content-Type': 'Application/Json'

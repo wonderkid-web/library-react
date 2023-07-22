@@ -34,21 +34,37 @@ function App() {
         },
         {
           path: '/bookProfile/:id',
-          element: <BookProfile />,
+          element: (
+            <ProtectedRoute>
+              <BookProfile />
+            </ProtectedRoute>
+          ),
           loader: getBookById
         },
         {
-          path: '/user/:name',
-          element: <User />,
+          path: '/borrower/:name',
+          element: (
+            <ProtectedRoute>
+              <User />
+            </ProtectedRoute>
+          ),
           loader: getBorrowedBook
         },
         {
           path: '/search',
-          element: <Search />,
+          element: (
+            <ProtectedRoute>
+              <Search />
+            </ProtectedRoute>
+          )
         },
         {
           path: '/borrower',
-          element: <Borrower />,
+          element: (
+            <ProtectedRoute>
+              <Borrower />
+            </ProtectedRoute>
+          ),
           loader: getBorrower
         },
         {
@@ -61,11 +77,19 @@ function App() {
         },
         {
           path: '/news',
-          element: <NewsPages/>
+          element: (
+            <ProtectedRoute>
+              <NewsPages />
+            </ProtectedRoute>
+          )
         },
         {
           path: '/countdown',
-          element: <Countdown />
+          element: (
+            <ProtectedRoute>
+              <Countdown />
+            </ProtectedRoute>
+          )
         }
       ]
     }

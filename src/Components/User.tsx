@@ -9,8 +9,11 @@ import Countdown from "react-countdown"
 import CountdownTemplate from "./CountdownTemplate"
 
 
+
 export const getBorrowedBook = async ({ params }: any) => {
-    const raw = await fetch(`http://localhost:3000/user/${params.name}`)
+    // console.log(params.name);
+    
+    const raw = await fetch(`http://localhost:3006/borrower/${params.name}`)
     const data = await raw.json()
     return data
 }
@@ -26,13 +29,13 @@ const User = () => {
     const [photoFile, setPhotoFile] = useState()
     const [loading, setLoading] = useState(false)
     const [exstention, setExstention] = useState(null)
-    const [borrowTime, setBorrowTime] = useState()
     const [photoURL, setPhotoURL] = useState("https://www.kindpng.com/picc/m/130-1300240_round-user-dry-clean-symbol-png-transparent-png.png")
     const rowsPerPage = 5;
 
     const { user, uploadProfilePict } = useUserAuth()
 
     const borrowedBook = useLoaderData() as BorrowerType
+    
     
     const formatLengkap = "D, MMMM YYYY, kk:mm:ss"
 
@@ -75,13 +78,14 @@ const User = () => {
         if (user && user.photoURL) {
             setPhotoURL(user.photoURL)
         }
-    }, [user])
+    }, [user, photoURL])
 
 
     return (
         <div className="h-fit">
             {
                 user ?
+                    
                     <div className="card w-full grid grid-cols-2 grid-rows-[300px_100px_w-fit_50px] gap-4 p-6 w-2/3 mx-auto card-side bg-base-100 shadow-xl">
                         <figure className="w-[200px] justify-self-center mask mask-squircle">
                             {user &&
