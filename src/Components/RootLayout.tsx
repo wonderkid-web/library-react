@@ -13,8 +13,22 @@ export interface BookType{
   disabled: string;
   book:any;
   borrow: string;
-  return_at: string
+  return_at: string;
+  url?: string;
 }
+
+export interface DeletedBook {
+  id: string;
+  title: string;
+  authors: string;
+  userId?: string;
+  bookId: string;
+  category: string;
+  image: string;
+  stock: number;
+  borrowId?: any;
+}
+
 
 export interface BorrowerType{
   map: any;
@@ -43,8 +57,9 @@ const RootLayout = () => {
   return (
     <div>
     {
-      location.pathname != '/login' && '/signup' && <Navbar />
+      location.pathname != '/login' ? location.pathname != '/signup' ? <Navbar /> : "" : ""
     }
+
         <Outlet />
     </div>
   )

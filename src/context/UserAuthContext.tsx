@@ -14,15 +14,16 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage"
 
 const userAuthContext = createContext()
 
-export const UserAuthcontextProvider = ({ children }) => {
+export const UserAuthcontextProvider = ({ children}:any) => {
 
     const [user, setUser] = useState()
 
-    const signUp = (email, password) => {
-        return createUserWithEmailAndPassword(auth, email, password)
+    const signUp = (email:string, password:string) => {
+         return createUserWithEmailAndPassword(auth, email, password)
+         
     }
 
-    const signIn = (email, password) => {
+    const signIn = (email:string, password:string) => {
         return signInWithEmailAndPassword(auth, email, password)
     }
 
@@ -35,7 +36,7 @@ export const UserAuthcontextProvider = ({ children }) => {
         return signOut(auth)
     }
 
-    const uploadProfilePict = async (file, currentUser, setLoading, exstention) => {
+    const uploadProfilePict = async (file :any, currentUser:object, setLoading:boolean, exstention:boolean) => {
         const fileRef = ref(storage, `${currentUser.uid}.${exstention}`)
 
         try {
@@ -52,8 +53,9 @@ export const UserAuthcontextProvider = ({ children }) => {
         }
     }
 
+   
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+        const unsubscribe = onAuthStateChanged(auth, (currentUser:any) => {
             setUser(currentUser)
         })
 

@@ -25,7 +25,7 @@ const Navbar = () => {
     if(user && user.photoURL){
       setPhotoURL(user.photoURL)
     }
-  },[user])
+  },[user, photoURL])
 
   return (
     <div>
@@ -68,6 +68,19 @@ const Navbar = () => {
                           : "p-2 font-bold"
                     }
                   >Search</NavLink>
+                </div>
+              </li>
+              <li>
+                <div className="indicator">
+                  <NavLink to={`/read`}
+                    className={({ isActive, isPending }) =>
+                      isActive
+                        ? "bg-warning font-bold rounded-lg p-2 text-white"
+                        : isPending
+                          ? "pending p-2"
+                          : "p-2 font-bold"
+                    }
+                  >Read</NavLink>
                 </div>
               </li>
               <li>

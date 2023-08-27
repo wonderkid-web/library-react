@@ -15,7 +15,7 @@ export const getBookById = async ({ params }: any) => {
 const BookProfile = () => {
   const book = useLoaderData() as BookType
 
-  const { user } = useUserAuth()
+  const { user }: any = useUserAuth()
   const [success, setSuccess] = useState(Boolean)
   const [fail, setFail] = useState(Boolean)
   const [loading, setLoading] = useState(false)
@@ -44,7 +44,7 @@ const BookProfile = () => {
         setFail(true)
       }
       setLoading(false)
-    } catch (e) {
+    } catch (e: any) {
       console.log(e.message)
     }
   }
@@ -108,15 +108,23 @@ const BookProfile = () => {
                 </tr>
                 <tr className="w-full">
                   <td>
-                    <div className="flex w-full bg-red-500">
-                      <div className="join">
-                        <button className="btn join-item btn-primary border-r border-white font-bold">
+                    <div className="flex flex-col w-full items-center gap-4">
+                      <div className="join order-1 self-end">
+                        <button className="btn join-item btn-primary border-white font-bold">
                           <a href={book.download}>Download</a>
                         </button>
-                        <button disabled={loading} className="btn join-item btn-primary border-l border-white font-bold" onClick={() => {
-
+                        {/* <button disabled={loading} className="btn join-item btn-primary border-l border-white font-bold" onClick={() => {
                           borrowingBook(book.id.replace("X", ""), user.displayName, book.image, handleBookReturnTime().toString())
-                        }}>Borrow</button>
+                        }}>Borrow</button> */}
+                        {/* You can open the modal using ID.showModal() method */}
+                        <button className="btn join-item btn-primary border-l border-white font-bold" onClick={() => window.my_modal_3.showModal()}>open modal</button>
+                        <dialog id="my_modal_3" className="modal">
+                          <form method="dialog" className="modal-box w-11/12 max-w-5xl h-full">
+                            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                            <h3 className="font-bold text-3xl text-center m-4">{book.title}</h3>
+                            <iframe className="w-full h-[95%]" src={`${book.url}pdf/`} frameborder="0"></iframe>
+                          </form>
+                        </dialog>
                       </div>
                       <QRCodeSVG className="self-end shadow-md" value={`http://localhost:5173/profile/${book.id}`} size={150} />
                     </div>

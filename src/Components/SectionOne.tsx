@@ -5,6 +5,9 @@ import { NewsType } from "./RootLayout";
 import { useUserAuth } from "../context/UserAuthContext";
 import { useEffect, useState } from "react";
 import { updateProfile } from "firebase/auth";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import { data } from "autoprefixer";
 
 
 export const getNews = async () => {
@@ -17,27 +20,38 @@ export const getNews = async () => {
 
 
 export default function SectionOne() {
-  const news = useLoaderData() as NewsType;
+  // const news = useLoaderData() as NewsType;
+
   const [name, setName] = useState()
   const [askName, setAskName] = useState(false)
   const { user }: any = useUserAuth()
 
   // console.log(user.user);
+  
+  const {data, isLoading} = useQuery({
+    queryFn: async () =>{
+      const data = await axios.get('https://berita-indo-api.vercel.app/v1/cnbc-news/tech')
+      return data.data
+    }
+  })
 
   useEffect(() => {
     if (!user.displayName) {
       setAskName(true)
-      console.log('ga ada nama');
-    } else {
-      console.log('ada nama');
-
     }
   }, [])
+
+
+
 
   const handleUpdateName = async (name:string) =>{
       updateProfile(user, {displayName:name})
       alert('nama berhasil di ubah!')
       setAskName(false)
+  }
+
+  if(isLoading){
+    return <div>Loading...</div>
   }
 
   return (
@@ -103,9 +117,12 @@ export default function SectionOne() {
                 </div>
               </div>
             </section>
-            <section className="w-full mx-auto my-auto p-12">
+            {/* {
+              <pre>{JSON.stringify(data.data, null, 2)}</pre>
+            } */}
+            {/* <section className="w-full mx-auto my-auto p-12">
               <h1 className="font-bold text-slate-800 text-4xl text-center">News</h1>
-              {news.slice(0, 1).map((news: NewsType, index: number) => (
+              {data && data.data.slice(0, 1).map((news: NewsType, index: number) => (
                 <div key={index} className="card lg:card-side p-12">
                   <figure className="rounded-xl"><img src={news.image.large} alt={news.title} className="w-[600px] h-96 rounded-xl flex-1" /></figure>
                   <Link to={news.link}>
@@ -126,7 +143,7 @@ export default function SectionOne() {
                 </Link>
                 <div className="carousel rounded-box carousel-center w-full" key={null}>
                   {
-                    news.slice(1, 11).map((news: NewsType, index: number) => (
+                    news && data.data.slice(1, 11).map((news: NewsType, index: number) => (
                       <div key={index} className="carousel-item p-2">
                         <div className="card w-[21.5rem] shadow-md">
                           <figure className="px-1 pt-1">
@@ -149,7 +166,7 @@ export default function SectionOne() {
                   }
                 </div>
               </div>
-            </section>
+            </section> */}
           </>
       }
     </>

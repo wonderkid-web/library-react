@@ -1,6 +1,6 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import BookProfile, { getBookById } from "./Components/BookProfile";
-import Search from "./Components/Search";
+import Search, { getBook } from "./Components/Search";
 import SectionOne, { getNews } from "./Components/SectionOne"
 import RootLayout from "./Components/RootLayout";
 import Error from "./Components/Error";
@@ -12,6 +12,12 @@ import { UserAuthcontextProvider } from "./context/UserAuthContext";
 import Signup from "./Components/Signup";
 import NewsPages from "./Components/NewsPages";
 import Countdown from "./Components/CountdownTemplate";
+import SearchCopy from "./Components/SearchCopy";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import Read from "./Components/Read";
+
+
+
 
 
 
@@ -25,7 +31,7 @@ function App() {
         {
           path: '/',
           errorElement: <Error />,
-          loader: getNews,
+          // loader: getNews,
           element: (
             <ProtectedRoute>
               <SectionOne />
@@ -33,7 +39,7 @@ function App() {
           )
         },
         {
-          path: '/bookProfile/:id',
+          path: '/read/bookProfile/:id',
           element: (
             <ProtectedRoute>
               <BookProfile />
@@ -54,9 +60,10 @@ function App() {
           path: '/search',
           element: (
             <ProtectedRoute>
-              <Search />
+              <SearchCopy />
             </ProtectedRoute>
-          )
+          ),
+          // loader: getBook
         },
         {
           path: '/borrower',
@@ -66,6 +73,10 @@ function App() {
             </ProtectedRoute>
           ),
           loader: getBorrower
+        },
+        {
+          path: '/read',
+          element: <Read />
         },
         {
           path: '/login',
@@ -95,13 +106,15 @@ function App() {
     }
   ])
 
-
+  const queryClient = new QueryClient()
 
   return (
     <>
-      <UserAuthcontextProvider>
-        <RouterProvider router={router} />
-      </UserAuthcontextProvider>
+      <QueryClientProvider client={queryClient}>
+        <UserAuthcontextProvider>
+          <RouterProvider router={router} />
+        </UserAuthcontextProvider>
+      </QueryClientProvider>
     </>
   )
 }

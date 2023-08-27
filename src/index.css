@@ -15,6 +15,11 @@ body {
   color: black;
 }
 
+.login{
+  background-image: url('https://scontent.fcgk35-1.fna.fbcdn.net/v/t39.30808-6/274265727_102877052336851_5559196363353172318_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=e3f864&_nc_eui2=AeFNTMrsrR4EUNJcLN1pv2a_M84uS_s74mYzzi5L-zviZljYsZ4wSaxplDHTJ-Mi33kuTkgupcf7uBYKN2MZHz6J&_nc_ohc=OLqtHBaNAGIAX8kKEi6&_nc_ht=scontent.fcgk35-1.fna&oh=00_AfBqO_QVSawKnL9pm2rT3Gp_TudaFfxIrwYI36RUhdImVQ&oe=64D69380');
+  background-size: cover;
+}
+
 nav {
   height: 8vh;
   display: grid;

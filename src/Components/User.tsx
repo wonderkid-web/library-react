@@ -104,9 +104,9 @@ const User = () => {
                         </div>
 
                         <h1 className="text-xl text-center justify-self-center col-span-2 row-start-2 p-2 bg-warning h-fit rounded-md">Buku yang dipinjam</h1>
-                        <table className="col-span-2 mt-4 table border w-full">
+                        <table className="col-span-2 mt-4 table border w-full table-zebra ">
                             <thead>
-                                <tr className="border border-slate-400">
+                                <tr className="">
                                     <th className="text-lg text-center text-slate-700">NO</th>
                                     <th className="text-lg text-center text-slate-700">Cover</th>
                                     <th className="text-lg text-center text-slate-700">ID</th>
@@ -119,7 +119,7 @@ const User = () => {
                                 {borrowedBook && borrowedBook
                                     .slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage)
                                     .map((book: BookType, index: number) => (
-                                        <tr key={book.id} className="border border-slate-400">
+                                        <tr key={book.id} className="">
                                             <td className="text-center">{index+1}</td>
                                             <td>
                                                 <div className="flex items-center space-x-3">

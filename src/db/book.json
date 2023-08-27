@@ -1,0 +1,285 @@
+{
+    "details": [
+      {
+        "id": 1,
+        "title": "Tetqer",
+        "authors": "test",
+        "userId": null,
+        "bookId": "12312",
+        "category": "Programming",
+        "image": "qweqeqe",
+        "stock": 10,
+        "borrowId": null
+      },
+      {
+        "id": 2,
+        "title": "Beginning Excel 2019",
+        "authors": "Noreen Brown, Barbara Lave, Hallie Puncochar",
+        "userId": null,
+        "bookId": "5635349929",
+        "category": "Computer Science",
+        "image": "https://www.dbooks.org/img/books/5635349929s.jpg",
+        "stock": 10,
+        "borrowId": null
+      },
+      {
+        "id": 3,
+        "title": "Building Democracy for All",
+        "authors": "Robert W. Maloy, Torrey Trust",
+        "userId": null,
+        "bookId": "5635417475",
+        "category": "Politics",
+        "image": "https://www.dbooks.org/img/books/5635417475s.jpg",
+        "stock": 5,
+        "borrowId": null
+      },
+      {
+        "id": 4,
+        "title": "The Economics of Big Science",
+        "authors": "Hans Peter Beck, Panagiotis Charitos",
+        "userId": null,
+        "bookId": "3030523918",
+        "category": "Economics",
+        "image": "https://www.dbooks.org/img/books/3030523918s.jpg",
+        "stock": 3,
+        "borrowId": null
+      },
+      {
+        "id": 5,
+        "title": "Programming for Computations - Python",
+        "authors": "Svein Linge, Hans Petter Langtangen",
+        "userId": null,
+        "bookId": "3030168778",
+        "category": "Computer Science",
+        "image": "https://www.dbooks.org/img/books/3030168778s.jpg",
+        "stock": 5,
+        "borrowId": null
+      },
+      {
+        "id": 6,
+        "title": "Invent Your Own Computer Games with Python",
+        "authors": "Al Sweigart",
+        "userId": null,
+        "bookId": "1503212300",
+        "category": "Computer Science",
+        "image": "https://www.dbooks.org/img/books/1503212300s.jpg",
+        "stock": 3,
+        "borrowId": null
+      },
+      {
+        "id": 7,
+        "title": "Python Data Science Handbook",
+        "authors": "Jake VanderPlas",
+        "userId": null,
+        "bookId": "1491912057",
+        "category": "Data Science",
+        "image": "https://www.dbooks.org/img/books/1491912057s.jpg",
+        "stock": 7,
+        "borrowId": null
+      },
+      {
+        "id": 8,
+        "title": "Random Sample Book",
+        "authors": "John Doe",
+        "userId": null,
+        "bookId": "1234567890",
+        "category": "Sample Category",
+        "image": "https://www.example.com/random-sample.jpg",
+        "stock": 10,
+        "borrowId": null
+      },
+      {
+        "id": 9,
+        "title": "Web Dev KKC",
+        "authors": "M Wahyu R",
+        "userId": null,
+        "bookId": "112211212",
+        "category": "Sciene",
+        "image": "https://localhost:5173",
+        "stock": 15,
+        "borrowId": null
+      },
+      {
+        "id": 10,
+        "title": "KKC Backend",
+        "authors": "MWR",
+        "userId": null,
+        "bookId": "19121212",
+        "category": "Sciene",
+        "image": "www.facebook.com",
+        "stock": 15,
+        "borrowId": null
+      },
+      {
+        "id": 11,
+        "title": "qweqwe",
+        "authors": "we",
+        "userId": null,
+        "bookId": "123123",
+        "category": "Biologi",
+        "image": "qweq",
+        "stock": 15,
+        "borrowId": null
+      },
+      {
+        "id": "191204742X",
+        "title": "The Official Raspberry Pi Handbook 2023",
+        "subtitle": "",
+        "authors": "David Crookes, PJ Evans, Rosie Hattersley, Phil King, Nicola King, KG Orphanides, Nik Rawlinson, Mark Vanstone",
+        "image": "https://www.dbooks.org/img/books/191204742Xs.jpg",
+        "url": "https://www.dbooks.org/the-official-raspberry-pi-handbook-2023-191204742x/"
+      },
+      {
+        "id": "5685804586",
+        "title": "Pay for Play",
+        "subtitle": "How the Music Industry Works, Where the Money Goes, and Why",
+        "authors": "Larry Wayte",
+        "image": "https://www.dbooks.org/img/books/5685804586s.jpg",
+        "url": "https://www.dbooks.org/pay-for-play-5685804586/"
+      },
+      {
+        "id": "1642002275",
+        "title": "Azure Bot Service Succinctly",
+        "subtitle": "",
+        "authors": "Ed Freitas",
+        "image": "https://www.dbooks.org/img/books/1642002275s.jpg",
+        "url": "https://www.dbooks.org/azure-bot-service-succinctly-1642002275/"
+      },
+      {
+        "id": "1607826593",
+        "title": "Introductory Algebra",
+        "subtitle": "",
+        "authors": "Anne Gloag, Andrew Gloag, Melissa Kramer",
+        "image": "https://www.dbooks.org/img/books/1607826593s.jpg",
+        "url": "https://www.dbooks.org/introductory-algebra-1607826593/"
+      },
+      {
+        "id": "1098111389",
+        "title": "Managing Cloud Native Data on Kubernetes",
+        "subtitle": "Architecting Cloud Native Data Services Using Open Source Technology",
+        "authors": "Jeff Carpenter, Patrick McFadin",
+        "image": "https://www.dbooks.org/img/books/1098111389s.jpg",
+        "url": "https://www.dbooks.org/managing-cloud-native-data-on-kubernetes-1098111389/"
+      },
+      {
+        "id": "1912047446",
+        "title": "An Introduction to C &amp; GUI Programming",
+        "subtitle": "",
+        "authors": "Simon Long",
+        "image": "https://www.dbooks.org/img/books/1912047446s.jpg",
+        "url": "https://www.dbooks.org/an-introduction-to-c-gui-programming-1912047446/"
+      },
+      {
+        "id": "1711470546",
+        "title": "Contemporary Mathematics",
+        "subtitle": "",
+        "authors": "Donna Kirk",
+        "image": "https://www.dbooks.org/img/books/1711470546s.jpg",
+        "url": "https://www.dbooks.org/contemporary-mathematics-1711470546/"
+      },
+      {
+        "id": "1805110195",
+        "title": "The Last Man Who Knew Everything",
+        "subtitle": "Thomas Young",
+        "authors": "Andrew Robinson",
+        "image": "https://www.dbooks.org/img/books/1805110195s.jpg",
+        "url": "https://www.dbooks.org/the-last-man-who-knew-everything-1805110195/"
+      },
+      {
+        "id": "5685527822",
+        "title": "HackSpace Magazine: Issue 65",
+        "subtitle": "April 2023",
+        "authors": "HackSpace Team",
+        "image": "https://www.dbooks.org/img/books/5685527822s.jpg",
+        "url": "https://www.dbooks.org/hackspace-magazine-issue-65-5685527822/"
+      },
+      {
+        "id": "5685535457",
+        "title": "Intro to Social Media",
+        "subtitle": "",
+        "authors": "Cheryl Lawson",
+        "image": "https://www.dbooks.org/img/books/5685535457s.jpg",
+        "url": "https://www.dbooks.org/intro-to-social-media-5685535457/"
+      },
+      {
+        "id": "5679752518",
+        "title": "HackSpace magazine: Issue 64",
+        "subtitle": "March 2023",
+        "authors": "HackSpace Team",
+        "image": "https://www.dbooks.org/img/books/5679752518s.jpg",
+        "url": "https://www.dbooks.org/hackspace-magazine-issue-64-5679752518/"
+      },
+      {
+        "id": "5679742652",
+        "title": "Introduction to Mechanical Engineering Design",
+        "subtitle": "",
+        "authors": "Jacqulyn A. Baughman",
+        "image": "https://www.dbooks.org/img/books/5679742652s.jpg",
+        "url": "https://www.dbooks.org/introduction-to-mechanical-engineering-design-5679742652/"
+      },
+      {
+        "id": "1642002305",
+        "title": "Svelte Succinctly",
+        "subtitle": "",
+        "authors": "Ed Freitas",
+        "image": "https://www.dbooks.org/img/books/1642002305s.jpg",
+        "url": "https://www.dbooks.org/svelte-succinctly-1642002305/"
+      },
+      {
+        "id": "1800644124",
+        "title": "Introduction to Systems Biology",
+        "subtitle": "Workbook for Flipped-classroom Teaching",
+        "authors": "Thomas Sauter, Marco Albrecht",
+        "image": "https://www.dbooks.org/img/books/1800644124s.jpg",
+        "url": "https://www.dbooks.org/introduction-to-systems-biology-1800644124/"
+      },
+      {
+        "id": "111954601X",
+        "title": "Blockchain For Dummies",
+        "subtitle": "",
+        "authors": "Manav Gupta",
+        "image": "https://www.dbooks.org/img/books/111954601Xs.jpg",
+        "url": "https://www.dbooks.org/blockchain-for-dummies-111954601x/"
+      },
+      {
+        "id": "1642002283",
+        "title": "ASP.NET Core APIs Succinctly",
+        "subtitle": "",
+        "authors": "Dirk Strauss",
+        "image": "https://www.dbooks.org/img/books/1642002283s.jpg",
+        "url": "https://www.dbooks.org/aspnet-core-apis-succinctly-1642002283/"
+      },
+      {
+        "id": "9463666656",
+        "title": "Numerical Methods for Ordinary Differential Equations",
+        "subtitle": "",
+        "authors": "Kees Vuik, Fred Vermolen, Martin van Gijzen",
+        "image": "https://www.dbooks.org/img/books/9463666656s.jpg",
+        "url": "https://www.dbooks.org/numerical-methods-for-ordinary-differential-equations-9463666656/"
+      },
+      {
+        "id": "1492095176",
+        "title": "A Practical Guide to Cloud Migration",
+        "subtitle": "Essays on Organizational Transformation from Google Practitioners",
+        "authors": "Kieran Broadfoot",
+        "image": "https://www.dbooks.org/img/books/1492095176s.jpg",
+        "url": "https://www.dbooks.org/a-practical-guide-to-cloud-migration-1492095176/"
+      },
+      {
+        "id": "1800648723",
+        "title": "The European Experience",
+        "subtitle": "A Multi-Perspective History of Modern Europe, 1500-2000",
+        "authors": "Jan Hansen, Jochen Hung, Jaroslav Ira, Judit Klement, Sylvain Lesage, Juan Luis Simal, Andrew Tompkins",
+        "image": "https://www.dbooks.org/img/books/1800648723s.jpg",
+        "url": "https://www.dbooks.org/the-european-experience-1800648723/"
+      },
+      {
+        "id": "5676984863",
+        "title": "HackSpace Magazine: Issue 63",
+        "subtitle": "February 2023",
+        "authors": "HackSpace Team",
+        "image": "https://www.dbooks.org/img/books/5676984863s.jpg",
+        "url": "https://www.dbooks.org/hackspace-magazine-issue-63-5676984863/"
+      }
+    ]
+  }

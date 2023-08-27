@@ -37,14 +37,11 @@ const Login = () => {
     }
 
     return (
-        <div className="hero min-h-screen bg-base-200">
-            <div className="hero-content flex-col w-3/4 lg:flex-row-reverse">
-                <div className="text-center lg:text-left">
-                    <h1 className="text-5xl font-bold">Login now!</h1>
-                    <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
-                </div>
-                <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+        <div className="hero min-h-screen bg-base-200 login">
+            <div className="hero-content w-[500px]">
+                <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 relative right-[-400px]">
                     <form>
+                        <img src="https://1.bp.blogspot.com/-c_NVdtXuZBE/XwVjD_ISP4I/AAAAAAAA8KY/2f4se3fToMgCYYmVUfaH12IKD5JHb-tJwCNcBGAsYHQ/w680/26169651_1627943780659943_3897432158579037467_n.jpg" className="w-[120px] mt-5 rounded-full mx-auto" alt="" />
 
                         <div className="card-body">
                             <div className="form-control">
@@ -66,12 +63,14 @@ const Login = () => {
                                     <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                                 </label>
                             </div>
-                            <div className="form-control">
+                            <div className="form-control flex flex-col gap-4">
                                 <button onClick={(e) => handleSignin(e)} type="submit" className='btn mt-2 btn-warning'>Sign in.</button>
                                 <button className='btn mt-2 btn-warning'>
                                     <Link to={'/signup'} className="btn btn-warning w-fit ">Sign up?</Link>
                                 </button>
-                                <GoogleButton className="mt-2 mx-auto" onClick={handleSigninWithGoogle}  />
+                                <GoogleButton className="mt-2 mx-auto" onClick={handleSigninWithGoogle} />
+                                <button className="text-center p-4 btn bg-yellow-500 hover:scale-110">Kunjungi Website Profile Putra Anda</button>
+
                             </div>
                         </div>
                     </form>

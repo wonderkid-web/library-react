@@ -34,22 +34,22 @@ const Borrower = () => {
                         <tr>
                             <th>id</th>
                             <th>Book ID</th>
-                            <th>Borrower</th>
-                            <th>Borrowed Time</th>
-                            <th>Giving Back Time</th>
+                            <th>User ID</th>
+                            <th>Authors</th>
+                            <th>Stock</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
+
                             (borrower).map((book: BorrowerType) => {
                                 return (
                                     <tr key={book.id}>
-                                        <td>{book.id}</td>
+                                        <td>{book.bookId}</td>
+                                        <td>{book. authors}</td>
                                         <td>{book.idBook}</td>
-                                        <td>{book.borrower}</td>
-                                        <td>{book.created_at}</td>
-                                        <td>{book.updated_at}</td>
+                                        <td>{book.stock}</td>
                                         <td><button className="btn btn-error">Delete</button></td>
                                         <td><button onClick={()=>handleStatus(book.idBook)} className="btn btn-info">Done</button></td>
                                     </tr>
