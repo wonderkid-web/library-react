@@ -124,7 +124,7 @@ const Search = () => {
                                                         <div className="avatar mx-auto">
                                                             <div className="mask w-[100px] h-[120px] shadow-lg rounded">
                                                                 <img
-                                                                    src={book.image}
+                                                                    src={`http://localhost:3006/images/${book.image}`}
                                                                     alt="Avatar Tailwind CSS Component"
                                                                     className="object-fill object-center"
                                                                 />
@@ -172,10 +172,11 @@ const Search = () => {
                                         .map((book: any) => (
                                             <div key={book.id} className="w-[250px] carousel-item">
                                                 <div className="card card-compact bg-white shadow-xl">
+                                                    {<p>{book.image}</p>}
                                                     <figure>
                                                         <img
                                                             className="w-[250px] h-[300px]"
-                                                            src={book.image}
+                                                            src={`http://localhost:3006/images/${book.image}`}
                                                             alt="Shoes"
                                                         />
                                                     </figure>

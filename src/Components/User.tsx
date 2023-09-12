@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom"
+import { useLoaderData, useSearchParams } from "react-router-dom"
 import { BookType, BorrowerType } from "./RootLayout"
 import { useUserAuth } from "../context/UserAuthContext"
 import ReactPaginate from "react-paginate"
@@ -7,12 +7,13 @@ import { useEffect, useState } from "react"
 import moment from "moment-timezone"
 import Countdown from "react-countdown"
 import CountdownTemplate from "./CountdownTemplate"
+import { useQuery } from "@tanstack/react-query"
 
 
 
 export const getBorrowedBook = async ({ params }: any) => {
     // console.log(params.name);
-    
+
     const raw = await fetch(`http://localhost:3006/borrower/${params.name}`)
     const data = await raw.json()
     return data
@@ -26,6 +27,7 @@ export const getBorrowedBook = async ({ params }: any) => {
 
 const User = () => {
     const [currentPage, setCurrentPage] = useState(1);
+    const [searchParams, setSearchParams] = useSearchParams()
     const [photoFile, setPhotoFile] = useState()
     const [loading, setLoading] = useState(false)
     const [exstention, setExstention] = useState(null)
@@ -35,8 +37,22 @@ const User = () => {
     const { user, uploadProfilePict } = useUserAuth()
 
     const borrowedBook = useLoaderData() as BorrowerType
-    
-    
+
+    const { data: b } = useQuery({
+        queryFn: async () => {
+            const raw = await fetch(`http://localhost:3006/borrower/${user.displayName}`)
+            const data = await raw.json()
+            return data
+        },
+        queryKey: ['borrower'],
+        refetchInterval: 1500
+    })
+
+
+
+
+
+
     const formatLengkap = "D, MMMM YYYY, kk:mm:ss"
 
 
@@ -49,7 +65,7 @@ const User = () => {
         } else {
             // Render a countdown
             return (
-              <CountdownTemplate days={days} hours={hours} minutes={minutes} seconds={seconds}  />
+                <CountdownTemplate days={days} hours={hours} minutes={minutes} seconds={seconds} />
             )
             // return <span>{hours}:{minutes}:{seconds}</span>;
         }
@@ -85,7 +101,7 @@ const User = () => {
         <div className="h-fit">
             {
                 user ?
-                    
+
                     <div className="card w-full grid grid-cols-2 grid-rows-[300px_100px_w-fit_50px] gap-4 p-6 w-2/3 mx-auto card-side bg-base-100 shadow-xl">
                         <figure className="w-[200px] justify-self-center mask mask-squircle">
                             {user &&
@@ -93,8 +109,8 @@ const User = () => {
                             }
                         </figure>
                         <div className="card-body">
-                            <h2 className="card-title">{user.displayName}</h2>
-                            <p>{user.email}</p>
+                            <h2 className="card-title self-end">{user.displayName}</h2>
+                            <p className="self-end">{user.email}</p>
                             <div className="card-actions justify-end">
                                 <div className="join">
                                     <input onChange={(e) => handleFile(e)} type="file" className="justify-self-center join-item file-input file-input-bordered file-input-warning w-full max-w-xs" />
@@ -116,17 +132,17 @@ const User = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {borrowedBook && borrowedBook
+                                {b && b
                                     .slice((currentPage - 1) * rowsPerPage, currentPage * rowsPerPage)
                                     .map((book: BookType, index: number) => (
                                         <tr key={book.id} className="">
-                                            <td className="text-center">{index+1}</td>
+                                            <td className="text-center">{index + 1}</td>
                                             <td>
                                                 <div className="flex items-center space-x-3">
                                                     <div className="avatar">
                                                         <div className="mask w-[100px] h-[120px] shadow-lg rounded">
                                                             <img
-                                                                src={book.imgURL}
+                                                                src={`http://localhost:3006/images/${book?.books[0]?.image}`}
                                                                 alt="Avatar Tailwind CSS Component"
                                                                 className="object-fill object-center"
                                                             />
@@ -147,7 +163,13 @@ const User = () => {
                                             </td>
                                             <td className="text-center">
                                                 {
-                                                    <Countdown date={Number(book.return_at) + 259200000} renderer={renderer} />
+                                                    book.status ? (
+                                                        <Countdown date={Number(moment(book.borrow_at).format('x')) + 259200000} renderer={renderer} />
+                                                    ) : (
+                                                        <>
+                                                            <h1 className="p-2 w-fit mx-auto rounded-md bg-emerald-500 text-white cursor-pointer">Buku sudah kamu pulangkan</h1>
+                                                        </>
+                                                    )
                                                 }
                                             </td>
                                             {

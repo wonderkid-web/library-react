@@ -83,7 +83,8 @@ const Navbar = () => {
                   >Read</NavLink>
                 </div>
               </li>
-              <li>
+              {/* Borrower Link */}
+              {/* <li>
                 <div className="indicator">
                   <NavLink to={`/borrower`}
                     className={({ isActive, isPending }) =>
@@ -95,7 +96,7 @@ const Navbar = () => {
                     }
                   >Borrower</NavLink>
                 </div>
-              </li>
+              </li> */}
             </ul>
           </div>
           <div className="dropdown dropdown-end">

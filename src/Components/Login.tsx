@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { useUserAuth } from "../context/UserAuthContext"
 import { Link, useNavigate } from "react-router-dom"
+import video from '../assets/video.mp4'
 import GoogleButton from "react-google-button"
 
 const Login = () => {
@@ -38,6 +39,7 @@ const Login = () => {
 
     return (
         <div className="hero min-h-screen bg-base-200 login">
+            <video src={video} autoPlay muted loop className="h-full w-full object-cover"></video>
             <div className="hero-content w-[500px]">
                 <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 relative right-[-400px]">
                     <form>

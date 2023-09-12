@@ -23,7 +23,7 @@ const Read = () => {
       const raw = await data.json()
       return raw
     },
-    queryKey: ['books',]
+    queryKey: ['books']
   })
   const { data: queried, isLoading: queriedLoading } = useQuery({
     queryFn: async () => {

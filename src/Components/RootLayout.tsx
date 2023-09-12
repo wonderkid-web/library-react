@@ -15,6 +15,7 @@ export interface BookType{
   borrow: string;
   return_at: string;
   url?: string;
+  status: boolean;
 }
 
 export interface DeletedBook {
