@@ -69,6 +69,8 @@ const SearchCopy = () => {
     return <img src="./process.svg"></img>
   } else if (isError) {
     return <h1>Error</h1>
+  }else if(books.data.total == 0) {
+    return <img src="./empty.svg"></img>
   }
 
   return (
@@ -95,6 +97,7 @@ const SearchCopy = () => {
 
             )
           })
+      
         }
 
       </div>
