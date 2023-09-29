@@ -2,8 +2,11 @@ import { Outlet, useLocation } from "react-router-dom"
 import Navbar from "./Navbar"
 
 export interface BookType{
+  length: number;
   image: string;
+  notes: string;
   id: string;
+  borrow_at: Date;
   description: string;
   authors: string;
   publisher: string;
@@ -14,6 +17,7 @@ export interface BookType{
   book:any;
   borrow: string;
   return_at: string;
+  coverUrl: string;
   url?: string;
   status: boolean;
 }

@@ -19,22 +19,16 @@ export const getBorrowedBook = async ({ params }: any) => {
     return data
 }
 
-// export const getBook = async () => {
-//     const raw = await fetch("https://www.dbooks.org/api/recent");
-//     const data = await raw.json();
-//     return data.books
-// };
 
 const User = () => {
     const [currentPage, setCurrentPage] = useState(1);
-    const [searchParams, setSearchParams] = useSearchParams()
     const [photoFile, setPhotoFile] = useState()
     const [loading, setLoading] = useState(false)
     const [exstention, setExstention] = useState(null)
     const [photoURL, setPhotoURL] = useState("https://www.kindpng.com/picc/m/130-1300240_round-user-dry-clean-symbol-png-transparent-png.png")
     const rowsPerPage = 5;
 
-    const { user, uploadProfilePict } = useUserAuth()
+    const { user, uploadProfilePict }: any = useUserAuth()
 
     const borrowedBook = useLoaderData() as BorrowerType
 
@@ -48,17 +42,12 @@ const User = () => {
         refetchInterval: 1500
     })
 
-
-
-
-
-
     const formatLengkap = "D, MMMM YYYY, kk:mm:ss"
 
 
     const Completionist = () => <span>Waktu pinjam buku kamu sudah habis nih, silahkan kembalikan buku kamu ke perpus yah!</span>;
 
-    const renderer = ({ days, hours, minutes, seconds, completed }) => {
+    const renderer = ({ days, hours, minutes, seconds, completed }: any) => {
         if (completed) {
             // Render a completed state
             return <Completionist />;
@@ -78,7 +67,7 @@ const User = () => {
         setCurrentPage(selectedPage);
     };
 
-    const handleFile = (e) => {
+    const handleFile = (e:any) => {
         if (e.target.files[0]) {
             const ext = e.target.files[0].name.split('.').pop()
             setExstention(ext)
@@ -129,6 +118,8 @@ const User = () => {
                                     <th className="text-lg text-center text-slate-700">Waktu Peminjaman</th>
                                     <th className="text-lg text-center text-slate-700">Waktu Pengembalian</th>
                                     <th className="text-lg text-center text-slate-700">Waktu Pinjam yang Tersisa</th>
+                                    <th className="text-lg text-center text-slate-700">Catatan</th>
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -142,7 +133,7 @@ const User = () => {
                                                     <div className="avatar">
                                                         <div className="mask w-[100px] h-[120px] shadow-lg rounded">
                                                             <img
-                                                                src={`http://localhost:3006/images/${book?.books[0]?.image}`}
+                                                                src={`http://localhost:3006/images/${book?.coverUrl}`}
                                                                 alt="Avatar Tailwind CSS Component"
                                                                 className="object-fill object-center"
                                                             />
@@ -150,7 +141,7 @@ const User = () => {
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td className="text-center">{book.idBook}</td>
+                                            <td className="text-center">{book.id}</td>
                                             <td className="text-center">
                                                 {
                                                     moment(book.borrow_at).format(formatLengkap)
@@ -161,16 +152,23 @@ const User = () => {
                                                     moment(book.borrow_at).add(3, 'd').format(formatLengkap)
                                                 }
                                             </td>
-                                            <td className="text-center">
+                                            <td className="text-center ">
                                                 {
                                                     book.status ? (
                                                         <Countdown date={Number(moment(book.borrow_at).format('x')) + 259200000} renderer={renderer} />
                                                     ) : (
                                                         <>
-                                                            <h1 className="p-2 w-fit mx-auto rounded-md bg-emerald-500 text-white cursor-pointer">Buku sudah kamu pulangkan</h1>
+                                                            <h1 className="p-2 w-fit mx-auto rounded-md bg-emerald-500 text-white cursor-pointer">Buku sudah Dipulangkan</h1>
                                                         </>
                                                     )
                                                 }
+                                            </td>
+                                            <td>
+                                                {book.notes === null && <button className="p-1 rounded-md bg-green-200">Tidak ada Sanksi</button>}
+                                                {book.notes === "Denda" && <button className="p-1 rounded-md bg-yellow-200">Kamu di Denda Rp. 5.000 karna telat memulangkan buku</button>}
+                                                {book.notes === "Rusak" && <button className="p-1 rounded-md bg-orange-200">Kamu di Denda Rp. 25.000 karna merusak buku</button>}
+                                                {book.notes === "Hilang" && <button className="p-1 rounded-md bg-red-200">Kamu di Denda Rp. 150.000 karna menghilangkan buku</button>}
+                                            
                                             </td>
                                             {
 

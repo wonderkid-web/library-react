@@ -31,7 +31,7 @@ const SearchCopy = () => {
     queryKey: ['loan',],
   })
 
-  const handlePost = async (id:number, email:any) =>{
+  const handlePost = async (id:number, email:any, imgURL: string, title: string) =>{
     try{
       setLoading(true)
       setSuccess(true)
@@ -41,7 +41,7 @@ const SearchCopy = () => {
           "Content-Type":"application/json"
         },
         body: JSON.stringify({
-          id, email
+          id, email, imgURL, title
         })
       })
 
@@ -90,7 +90,7 @@ const SearchCopy = () => {
                   <p className="p-2 rounded-md bg-yellow-500 text-white">Stock: {book.stock}</p>
                   <p>If a dog chews shoes whose shoes does he choose?</p>
                   <div className="card-actions">
-                    <button disabled={book.stock == 0 ? true : false}  onClick={()=>handlePost(book.id, akun.email)} className="btn btn-primary">Borrow</button>
+                    <button disabled={book.stock == 0 ? true : false}  onClick={()=>handlePost(book.id, akun.email, book.image, book.title)} className="btn btn-primary">Borrow</button>
                   </div>
                 </div>
               </div>
