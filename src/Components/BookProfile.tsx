@@ -25,7 +25,7 @@ const BookProfile = () => {
   const borrowingBook = async (idBook: string, borrower: string, imgURL: string, return_at: string) => {
     try {
       setLoading(true)
-      const posting = await fetch('http://localhost:3006/borrowing', {
+      const posting = await fetch('https://library-react-backend.vercel.app/borrowing', {
         method: "POST",
         headers: {
           'Content-Type': 'application/json'

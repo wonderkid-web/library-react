@@ -35,7 +35,7 @@ const Signup = () => {
             console.log(email, name)
             await signUp(email, password)
             
-            signup = await fetch('http://localhost:3006/signup', {
+            signup = await fetch('https://library-react-backend.vercel.app/signup', {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

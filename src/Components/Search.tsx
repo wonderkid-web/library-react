@@ -6,7 +6,7 @@ import { DeletedBook } from "./RootLayout";
 
 export const getBook = async () => {
     // const link = `https://www.dbooks.org/api/recent`
-    const link = `http://localhost:3006/book`
+    const link = `https://library-react-backend.vercel.app/book`
     const raw = await fetch(link);
     const data = await raw.json();
     return data.details
@@ -24,7 +24,7 @@ const Search = () => {
 
     // const getBook = async () => {
     //     const link = `https://www.dbooks.org/api/recent`
-    //     // const link = `http://localhost:3006/book`
+    //     // const link = `https://library-react-backend.vercel.app/book`
     //     const raw = await fetch(link);
     //     const data = await raw.json();
     //     setBooks(data.books);
@@ -124,7 +124,7 @@ const Search = () => {
                                                         <div className="avatar mx-auto">
                                                             <div className="mask w-[100px] h-[120px] shadow-lg rounded">
                                                                 <img
-                                                                    src={`http://localhost:3006/images/${book.image}`}
+                                                                    src={`https://library-react-backend.vercel.app/images/${book.image}`}
                                                                     alt="Avatar Tailwind CSS Component"
                                                                     className="object-fill object-center"
                                                                 />
@@ -176,7 +176,7 @@ const Search = () => {
                                                     <figure>
                                                         <img
                                                             className="w-[250px] h-[300px]"
-                                                            src={`http://localhost:3006/images/${book.image}`}
+                                                            src={`https://library-react-backend.vercel.app/images/${book.image}`}
                                                             alt="Shoes"
                                                         />
                                                     </figure>

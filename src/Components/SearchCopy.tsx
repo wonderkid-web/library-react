@@ -24,7 +24,7 @@ const SearchCopy = () => {
 
   const { data: books, isLoading, isError, } = useQuery({
     queryFn: async () => {
-      const data = await axios.get('http://localhost:3006/book')
+      const data = await axios.get('https://library-react-backend.vercel.app/book')
       return data
     },
     refetchInterval: 1500,
@@ -35,7 +35,7 @@ const SearchCopy = () => {
     try{
       setLoading(true)
       setSuccess(true)
-      const data = await fetch('http://localhost:3006/loaning', {
+      const data = await fetch('https://library-react-backend.vercel.app/loaning', {
         method: 'POST',
         headers:{
           "Content-Type":"application/json"
@@ -83,7 +83,7 @@ const SearchCopy = () => {
             return (
               <div className="card w-96 bg-base-100 shadow-md h-[450px]" key={book.id}>
                 <figure className="px-10 pt-10">
-                  <img src={`http://localhost:3006/images/${book.image}`} alt="Shoes" className="rounded-xl shadow-md relative top-[50px]" />
+                  <img src={`https://library-react-backend.vercel.app/images/${book.image}`} alt="Shoes" className="rounded-xl shadow-md relative top-[50px]" />
                 </figure>
                 <div className="card-body items-center text-center">
                   <h2 className="card-title">{book.title}!</h2>

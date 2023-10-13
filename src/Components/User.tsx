@@ -14,7 +14,7 @@ import { useQuery } from "@tanstack/react-query"
 export const getBorrowedBook = async ({ params }: any) => {
     // console.log(params.name);
 
-    const raw = await fetch(`http://localhost:3006/borrower/${params.name}`)
+    const raw = await fetch(`https://library-react-backend.vercel.app/borrower/${params.name}`)
     const data = await raw.json()
     return data
 }
@@ -34,7 +34,7 @@ const User = () => {
 
     const { data: b } = useQuery({
         queryFn: async () => {
-            const raw = await fetch(`http://localhost:3006/borrower/${user.displayName}`)
+            const raw = await fetch(`https://library-react-backend.vercel.app/borrower/${user.displayName}`)
             const data = await raw.json()
             return data
         },
@@ -133,7 +133,7 @@ const User = () => {
                                                     <div className="avatar">
                                                         <div className="mask w-[100px] h-[120px] shadow-lg rounded">
                                                             <img
-                                                                src={`http://localhost:3006/images/${book?.coverUrl}`}
+                                                                src={`https://library-react-backend.vercel.app/images/${book?.coverUrl}`}
                                                                 alt="Avatar Tailwind CSS Component"
                                                                 className="object-fill object-center"
                                                             />

@@ -32,7 +32,7 @@ const Table = ({ columns, datas }: any) => {
   })
 
   const handleDelete = async (borrowId: string) => {
-    const data = await fetch(`http://localhost:3006/delete/${borrowId}`)
+    const data = await fetch(`https://library-react-backend.vercel.app/delete/${borrowId}`)
 
     if (data.ok) {
       setSuccess(true)
